@@ -47,15 +47,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Celula.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="frmMostrarMatriz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmMostrarMatriz.Designer.cs">
+      <DependentUpon>frmMostrarMatriz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperacoes.Designer.cs">
+      <DependentUpon>frmOperacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrimeiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrimeiro.Designer.cs">
+      <DependentUpon>frmPrimeiro.cs</DependentUpon>
     </Compile>
     <Compile Include="ListaCruzada.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmMostrarMatriz.resx">
+      <DependentUpon>frmMostrarMatriz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperacoes.resx">
+      <DependentUpon>frmOperacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrimeiro.resx">
+      <DependentUpon>frmPrimeiro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -1,0 +1,12 @@
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe.config
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.pdb
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csprojAssemblyReference.cache
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmPrincipal.resources
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.Properties.Resources.resources
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.GenerateResource.cache
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.CoreCompileInputs.cache
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.exe
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmMostrarMatriz.resources
+D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmOperacoes.resources
