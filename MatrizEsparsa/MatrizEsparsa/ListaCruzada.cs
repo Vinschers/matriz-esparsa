@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Classe da matriz que é implementada a partir de uma Lista Ligada.
+/// </summary>
 class ListaCruzada
 {
     Celula primeira, atual, anterior, acima;
@@ -82,6 +81,10 @@ class ListaCruzada
     }
 
     //construtores
+    /// <summary>
+    /// Construtor de cópia para criar uma matriz identica a passada como parâmetro.
+    /// </summary>
+    /// <param name="l">Matriz que será copiada para a nova lista.</param>
     public ListaCruzada(ListaCruzada l)
     {
         if (l == null)
@@ -116,6 +119,7 @@ class ListaCruzada
         }
     }
 
+    //métodos gerais
     public int Contar()
     {
         atual = primeira.Abaixo.Direita;
@@ -135,7 +139,7 @@ class ListaCruzada
     {
         get => primeira == null;
     }
-    public bool ExisteCelula(int l, int c)
+    protected bool ExisteCelula(int l, int c)
     {
         bool achou = false;
         bool fim = false;
@@ -168,10 +172,19 @@ class ListaCruzada
         }
         return achou;
     }
+    public double Achar(int l, int c)
+    {
+        if (l > linhas || c > colunas)
+            throw new ArgumentOutOfRangeException();
+        if (ExisteCelula(l, c))
+            return atual.Valor;
+        else
+            return 0;
+    }
     public void Adicionar(Celula c)
     {
-        if (c == null)
-            throw new ArgumentNullException();
+        if (c == null || c.Linha < 0 || c.Coluna < 0)
+            throw new ArgumentException("Célula inválida");
         if (EstaVazia)
         {
             primeira.Abaixo.Direita = c;
@@ -186,5 +199,33 @@ class ListaCruzada
             c.Abaixo = acima.Abaixo;
             acima.Abaixo = c;
         }
+    }
+    public void Remover(Celula c)
+    {
+        if (c == null || c.Linha < 0 || c.Coluna < 0)
+            throw new ArgumentException("Célula inválida");
+        if (ExisteCelula(c.Linha, c.Coluna))
+        {
+            acima.Abaixo = atual.Abaixo;
+            anterior.Direita = atual.Direita;
+        }
+    }
+
+    //operações
+    public static ListaCruzada Somar(ListaCruzada l1, ListaCruzada l2)
+    {
+        throw new NotImplementedException();
+    }
+    public static ListaCruzada Multiplicar(ListaCruzada l1, ListaCruzada l2)
+    {
+        throw new NotImplementedException();
+    }
+    public static ListaCruzada Inverter(ListaCruzada l1, ListaCruzada l2)
+    {
+        throw new NotImplementedException();
+    }
+    public static ListaCruzada Transpor(ListaCruzada l1, ListaCruzada l2)
+    {
+        throw new NotImplementedException();
     }
 }
