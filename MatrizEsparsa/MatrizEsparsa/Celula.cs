@@ -171,6 +171,10 @@ class Celula
             return false;
         if (!c.Coluna.Equals(Coluna))
             return false;
+        if (!c.Direita.Equals(Direita))             // Scherer, acho que faltava o equals desses dois campos
+            return false;
+        if (!c.Abaixo.Equals(Abaixo))
+            return false;
         return true;
     }
     public override int GetHashCode()
@@ -179,7 +183,10 @@ class Celula
         ret = ret * 2 + linha.GetHashCode();
         ret = ret * 3 + coluna.GetHashCode();
         ret = ret * 5 + valor.GetHashCode();
+        ret = ret * 5 + direita.GetHashCode();
+        ret = ret * 5 + abaixo.GetHashCode();
         return ret;
     }
                                                        //sera que precisa considerar as Celular Diretia e Abaixo???
+                                                       // acho que sim, já que direita e abaixo podem apontar valores diferentes de acordo com a matriz.
 }
