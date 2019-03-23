@@ -18,9 +18,9 @@ class ListaCruzada
     {
         string ret = "{ ";
         atual = primeira.Abaixo.Direita;
-        while(atual.Linha > primeira.Abaixo.Linha)
+        while (atual.Linha > primeira.Abaixo.Linha)
         {
-            while(atual.Coluna > primeira.Coluna)
+            while (atual.Coluna > primeira.Coluna)
             {
                 ret += atual.Valor + " ";
                 atual = atual.Direita;
@@ -142,7 +142,7 @@ class ListaCruzada
         colunas = dgv.ColumnCount;
         IniciarMatriz();
         foreach (DataGridViewRow row in dgv.Rows)
-            foreach(DataGridViewCell cell in row.Cells)
+            foreach (DataGridViewCell cell in row.Cells)
                 Adicionar(new Celula((double)cell.Value, cell.RowIndex + 1, cell.ColumnIndex + 1));
     }
 
@@ -160,31 +160,41 @@ class ListaCruzada
         {
             atual.Direita = new Celula(Celula.posicaoDefault, i, null, null);
             atual.Abaixo = atual;
+            anterior = atual;
             atual = atual.Direita;
         }
         atual.Direita = primeira;
+        atual.Abaixo = atual;
         primeira.Abaixo = new Celula(1, Celula.posicaoDefault, null, null);
         atual = primeira.Abaixo;
         for (int i = 2; i <= linhas; i++)
         {
             atual.Abaixo = new Celula(i, Celula.posicaoDefault, null, null);
             atual.Direita = atual;
+            anterior = atual;
             atual = atual.Abaixo;
         }
         atual.Abaixo = primeira;
+        atual.Direita = atual;
     }
 
     public void MudarDimensao(int l, int c)
     {
         if (l > linhas)
         {
-            for (atual = primeira; atual.Abaixo != null; atual = atual.Abaixo) { } //quando o for acabar, atual será o nó-cabeca da última linha
+            for (atual = primeira; atual.Abaixo != primeira; atual = atual.Abaixo)
+            {
+                anterior = atual;
+            } //quando o for acabar, atual será o nó-cabeca da última linha
             int diffLinhas = l - linhas;
             for (int i = 0; i < diffLinhas; i++)
             {
                 atual.Abaixo = new Celula(linhas + i, Celula.posicaoDefault, null, null);
+                atual.Direita = atual;
+                anterior = atual;
                 atual = atual.Abaixo;
             }
+            anterior.Abaixo = primeira;
         }
         else if (l < linhas)
         {
@@ -192,25 +202,32 @@ class ListaCruzada
             for (int i = 0; i < l; i++)
                 atual = atual.Abaixo; //atual é o nó-cabeca da linha nova, que será a última
             Celula noCabecaLinhaAtual = atual;
-            atual.Abaixo = null;
+            atual.Abaixo = primeira;
             atual = atual.Direita;
             while (atual != noCabecaLinhaAtual) //enquanto atual não percorreu todas as células da linha
             {
+                Celula noCabecaColunaAtual;
+                for (noCabecaColunaAtual = atual; noCabecaColunaAtual.Linha != Celula.posicaoDefault; noCabecaColunaAtual = noCabecaColunaAtual.Abaixo) { }
+                //noCabecaColunaAtual ganha o valor esperado depois do for
                 if (!atual.Abaixo.Equals(atual))
-                    atual.Abaixo = null; //os ponteiros são desfeitos e, assim, todas as células abaixo da nova última linha são apagadas
+                    atual.Abaixo = noCabecaColunaAtual; //os ponteiros são desfeitos e, assim, todas as células abaixo da nova última linha são apagadas
+                    //para nao perder a circularidade da lista, a celula Abaixo nao fica nula, mas aponta para o no cabeca correspondente
                 atual = atual.Direita;
             }
         }
         linhas = l;
         if (c > colunas)
         {
-            for (atual = primeira; atual.Direita != null; atual = atual.Direita) { } //quando o for acabar, atual será o nó-cabeca da última coluna
+            for (atual = primeira; atual.Direita != primeira; atual = atual.Direita) { } //quando o for acabar, atual será o nó-cabeca da última coluna
             int diffColunas = c - colunas;
             for (int i = 0; i < diffColunas; i++)
             {
                 atual.Direita = new Celula(Celula.posicaoDefault, colunas + i, null, null);
+                atual.Abaixo = atual;
+                anterior = atual;
                 atual = atual.Direita;
             }
+            anterior.Direita = primeira;
         }
         else if (c < colunas)
         {
@@ -219,11 +236,14 @@ class ListaCruzada
             for (int i = 0; i < c; i++)
                 atual = atual.Direita;
             Celula noCabecaColunaAtual = atual;
-            atual.Direita = null;
+            atual.Direita = primeira;
             atual = atual.Abaixo;
             while (atual != noCabecaColunaAtual)
             {
-                atual.Direita = null;
+                Celula noCabecaLinhaAtual;
+                for (noCabecaLinhaAtual = atual; noCabecaLinhaAtual.Linha != Celula.posicaoDefault; noCabecaLinhaAtual = noCabecaLinhaAtual.Abaixo) { }
+                if (!atual.Abaixo.Equals(atual))
+                    atual.Direita = noCabecaLinhaAtual;
                 atual = atual.Abaixo;
             }
         }
@@ -286,9 +306,9 @@ class ListaCruzada
         //}
         //return achou;
         atual = primeira;
-        while(atual.Linha != primeira.Linha)
+        while (atual.Linha != primeira.Linha)
         {
-            while(atual.Coluna != primeira.Coluna)
+            while (atual.Coluna != primeira.Coluna)
             {
                 if (l == atual.Linha && c == atual.Coluna)
                     return true;
