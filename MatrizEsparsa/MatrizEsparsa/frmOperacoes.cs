@@ -37,5 +37,10 @@ namespace MatrizEsparsa
         {
             btnLer2.Enabled = true;
         }
+
+        private void btnMultiplicar_Click(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }

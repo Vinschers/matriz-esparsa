@@ -64,6 +64,15 @@ class Celula
         set => abaixo = value;
     }
 
+    /// <summary>
+    /// Retorna string para ser salva em arquivo texto e ser lida depois
+    /// </summary>
+    /// <returns></returns>
+    public string ParaArquivo()
+    {
+        return Linha + " " + Coluna + " " + Valor;
+    }
+
     //construtores
     /// <summary>
     /// Construtor com todos os atributos
@@ -145,10 +154,22 @@ class Celula
         Direita = Abaixo = null;
     }
 
+    /// <summary>
+    /// Construtor para instanciar célula a partir de uma string que contém suas propriedades (essa string é gerada com o método ParaArquivo())
+    /// </summary>
+    /// <param name="s">a string que será usada para preencher as propriedades</param>
+    public Celula(string s)
+    {
+        string[] props = s.Split(' ');
+        Linha = int.Parse(props[0]);
+        Coluna = int.Parse(props[1]);
+        Valor = double.Parse(props[2]);
+    }
+
     //métodos obrigatórios
     public override string ToString()
     {
-        return $"[{Linha}, {Coluna}] - {Valor}";
+        return $"[{Linha}, {Coluna}] : {Valor}";
     }
     public int CompareTo(Celula c)
     {

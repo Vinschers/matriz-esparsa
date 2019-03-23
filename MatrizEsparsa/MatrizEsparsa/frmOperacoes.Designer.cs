@@ -36,6 +36,9 @@
             this.btnMultiplicar = new System.Windows.Forms.Button();
             this.btnLer2 = new System.Windows.Forms.Button();
             this.dlgArquivo = new System.Windows.Forms.OpenFileDialog();
+            this.btnTranspor = new System.Windows.Forms.Button();
+            this.btnInverter = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -52,7 +55,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(39, 553);
+            this.dataGridView2.Location = new System.Drawing.Point(39, 595);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(735, 454);
             this.dataGridView2.TabIndex = 1;
@@ -68,7 +71,7 @@
             // 
             // btnLer1
             // 
-            this.btnLer1.Location = new System.Drawing.Point(936, 599);
+            this.btnLer1.Location = new System.Drawing.Point(1258, 595);
             this.btnLer1.Name = "btnLer1";
             this.btnLer1.Size = new System.Drawing.Size(121, 45);
             this.btnLer1.TabIndex = 3;
@@ -79,7 +82,7 @@
             // btnSomar
             // 
             this.btnSomar.Enabled = false;
-            this.btnSomar.Location = new System.Drawing.Point(936, 685);
+            this.btnSomar.Location = new System.Drawing.Point(1258, 681);
             this.btnSomar.Name = "btnSomar";
             this.btnSomar.Size = new System.Drawing.Size(121, 45);
             this.btnSomar.TabIndex = 4;
@@ -89,17 +92,18 @@
             // btnMultiplicar
             // 
             this.btnMultiplicar.Enabled = false;
-            this.btnMultiplicar.Location = new System.Drawing.Point(1114, 685);
+            this.btnMultiplicar.Location = new System.Drawing.Point(1436, 681);
             this.btnMultiplicar.Name = "btnMultiplicar";
             this.btnMultiplicar.Size = new System.Drawing.Size(121, 45);
             this.btnMultiplicar.TabIndex = 5;
             this.btnMultiplicar.Text = "Multiplicar Matrizes";
             this.btnMultiplicar.UseVisualStyleBackColor = true;
+            this.btnMultiplicar.Click += new System.EventHandler(this.btnMultiplicar_Click);
             // 
             // btnLer2
             // 
             this.btnLer2.Enabled = false;
-            this.btnLer2.Location = new System.Drawing.Point(1114, 599);
+            this.btnLer2.Location = new System.Drawing.Point(1436, 595);
             this.btnLer2.Name = "btnLer2";
             this.btnLer2.Size = new System.Drawing.Size(121, 45);
             this.btnLer2.TabIndex = 6;
@@ -111,11 +115,44 @@
             // 
             this.dlgArquivo.FileName = "openFileDialog1";
             // 
+            // btnTranspor
+            // 
+            this.btnTranspor.Enabled = false;
+            this.btnTranspor.Location = new System.Drawing.Point(1258, 764);
+            this.btnTranspor.Name = "btnTranspor";
+            this.btnTranspor.Size = new System.Drawing.Size(121, 45);
+            this.btnTranspor.TabIndex = 7;
+            this.btnTranspor.Text = "Transpor Matrizes";
+            this.btnTranspor.UseVisualStyleBackColor = true;
+            // 
+            // btnInverter
+            // 
+            this.btnInverter.Enabled = false;
+            this.btnInverter.Location = new System.Drawing.Point(1436, 764);
+            this.btnInverter.Name = "btnInverter";
+            this.btnInverter.Size = new System.Drawing.Size(121, 45);
+            this.btnInverter.TabIndex = 8;
+            this.btnInverter.Text = "Inverter Matrizes";
+            this.btnInverter.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 549);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 31);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Resultado:";
+            // 
             // frmOperacoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 1061);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnInverter);
+            this.Controls.Add(this.btnTranspor);
             this.Controls.Add(this.btnLer2);
             this.Controls.Add(this.btnMultiplicar);
             this.Controls.Add(this.btnSomar);
@@ -130,6 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -143,5 +181,8 @@
         private System.Windows.Forms.Button btnMultiplicar;
         private System.Windows.Forms.Button btnLer2;
         private System.Windows.Forms.OpenFileDialog dlgArquivo;
+        private System.Windows.Forms.Button btnTranspor;
+        private System.Windows.Forms.Button btnInverter;
+        private System.Windows.Forms.Label label1;
     }
 }

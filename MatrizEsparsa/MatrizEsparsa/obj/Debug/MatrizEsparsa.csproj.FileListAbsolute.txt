@@ -10,3 +10,15 @@ D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\Matriz
 D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb
 D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmMostrarMatriz.resources
 D:\Documentos\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmOperacoes.resources
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe.config
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.pdb
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csprojAssemblyReference.cache
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmMostrarMatriz.resources
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmOperacoes.resources
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmPrincipal.resources
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.Properties.Resources.resources
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.GenerateResource.cache
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.CoreCompileInputs.cache
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.exe
+C:\Users\fsvic\Desktop\FELIPAUM\Projetos\2019\1 semestre\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb

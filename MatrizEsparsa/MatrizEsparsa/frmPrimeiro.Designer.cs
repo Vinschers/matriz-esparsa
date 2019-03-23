@@ -50,7 +50,7 @@
             // 
             this.btnSair.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSair.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSair.Location = new System.Drawing.Point(59, 121);
+            this.btnSair.Location = new System.Drawing.Point(59, 134);
             this.btnSair.Margin = new System.Windows.Forms.Padding(4);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(150, 28);
@@ -66,9 +66,9 @@
             this.btnOperacoes.Location = new System.Drawing.Point(59, 69);
             this.btnOperacoes.Margin = new System.Windows.Forms.Padding(4);
             this.btnOperacoes.Name = "btnOperacoes";
-            this.btnOperacoes.Size = new System.Drawing.Size(150, 28);
+            this.btnOperacoes.Size = new System.Drawing.Size(150, 42);
             this.btnOperacoes.TabIndex = 2;
-            this.btnOperacoes.Text = "Operações";
+            this.btnOperacoes.Text = "Operações com duas matrizes";
             this.btnOperacoes.UseVisualStyleBackColor = true;
             this.btnOperacoes.Click += new System.EventHandler(this.btnOperacoes_Click);
             // 
