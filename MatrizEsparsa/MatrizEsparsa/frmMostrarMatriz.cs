@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MatrizEsparsa
 {
     public partial class frmMostrarMatriz : Form
     {
         ListaCruzada matriz;
+        bool exibindoMatriz = false, exibindoValorDaCelula;
         public frmMostrarMatriz()
         {
             InitializeComponent();
@@ -22,6 +24,10 @@ namespace MatrizEsparsa
         private void btnLerArquivo_Click(object sender, EventArgs e) // permite que o usuário exiba a matriz após a leitura
         {
             btnExibirMatriz.Enabled = true;
+            if (File.Exists("matriz.txt"))
+                matriz = new ListaCruzada(new StreamReader("matriz.txt"));
+            else
+                File.Create("matriz.txt");
         }
 
         private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
@@ -36,6 +42,9 @@ namespace MatrizEsparsa
             btnAdicionarK.Enabled = true;
             dgv.RowCount = matriz.Linhas;
             dgv.ColumnCount = matriz.Colunas;
+            exibindoMatriz = true;
+            matriz.Exibir(ref dgv);
+            exibindoMatriz = false;
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,6 +58,8 @@ namespace MatrizEsparsa
             {
                 int l = int.Parse(txtAltura.Text);
                 int c = int.Parse(txtLargura.Text);
+                nUDColuna.Maximum = c;
+                nUDLinha.Maximum = l;
                 if (l > 1 && c > 1)
                     matriz.MudarDimensao(l, c);
             }
@@ -64,10 +75,14 @@ namespace MatrizEsparsa
 
         private void btnExibirCelula_Click(object sender, EventArgs e)
         {
+            exibindoValorDaCelula = true;
             int linha = (int)nUDLinha.Value;
             int coluna = (int)nUDColuna.Value;
             if (linha <= matriz.Linhas && coluna <= matriz.Colunas)
-                txtValorCelula.Text = matriz.Achar(linha, coluna).ToString();
+            {
+                txtValorCelula.Text = matriz[linha, coluna].ToString();
+                exibindoValorDaCelula = false;
+            }
             else
                 MessageBox.Show("Linha ou coluna está fora da matriz", "Erro de parâmetro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
@@ -79,7 +94,12 @@ namespace MatrizEsparsa
             if (linha <= matriz.Linhas && coluna <= matriz.Colunas)
             {
                 matriz.Remover(linha, coluna);
-                txtValorCelula.Text = matriz.Achar(linha, coluna).ToString();
+                exibindoValorDaCelula = true;
+                txtValorCelula.Text = "0";
+                exibindoValorDaCelula = false;
+                exibindoMatriz = true;
+                matriz.Exibir(ref dgv);
+                exibindoMatriz = false;
             }
             else
                 MessageBox.Show("Linha ou coluna está fora da matriz", "Erro de parâmetro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -95,14 +115,46 @@ namespace MatrizEsparsa
 
         private void txtValorCelula_TextChanged(object sender, EventArgs e)
         {
-            int linha = (int)nUDLinha.Value;
-            int coluna = (int)nUDColuna.Value;
-            if (matriz.Achar(linha, coluna) == 0)
-                matriz.Adicionar(new Celula(double.Parse(txtValorCelula.Text), linha, coluna));
-            else
+            if (!exibindoValorDaCelula)
             {
-                matriz.Alterar(linha, coluna, double.Parse(txtValorCelula.Text));
+                int linha = (int)nUDLinha.Value;
+                int coluna = (int)nUDColuna.Value;
+                if (matriz[linha, coluna] == 0)
+                    matriz.Adicionar(new Celula(double.Parse(txtValorCelula.Text), linha, coluna));
+                else
+                    matriz.Alterar(linha, coluna, double.Parse(txtValorCelula.Text));
             }
+        }
+
+        private void btnExcluirMatriz_Click(object sender, EventArgs e)
+        {
+            matriz.RemoverTudo();
+            matriz.Exibir(ref dgv);
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            matriz.Salvar(new StreamWriter("matriz.txt"));
+        }
+
+        private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!exibindoMatriz)
+            {
+                int linha = e.RowIndex + 1;
+                int coluna = e.ColumnIndex + 1;
+                double valor = Convert.ToDouble(dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                if (matriz[linha, coluna] == 0)
+                    matriz.Adicionar(new Celula(valor, linha, coluna));
+                else
+                    matriz.Alterar(linha, coluna, valor);
+            }
+        }
+
+        private void frmMostrarMatriz_Load(object sender, EventArgs e)
+        {
+            txtAltura.Text = txtLargura.Text = ListaCruzada.dimensaoDefault.ToString();
+            nUDLinha.Maximum = nUDColuna.Maximum = ListaCruzada.dimensaoDefault;
         }
     }
 }

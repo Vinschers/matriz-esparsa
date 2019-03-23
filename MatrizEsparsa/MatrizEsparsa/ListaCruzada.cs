@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
 
 /// <summary>
 /// Classe da matriz que é implementada a partir de uma Lista Ligada.
@@ -8,7 +9,7 @@ class ListaCruzada
 {
     Celula primeira, atual, anterior, acima;
     int linhas, colunas;
-    const int defaultDimensao = 1000;
+    public const int dimensaoDefault = 20;
 
 
 
@@ -97,7 +98,7 @@ class ListaCruzada
     /// </summary>
     public ListaCruzada()
     {
-        linhas = colunas = defaultDimensao;
+        linhas = colunas = dimensaoDefault;
         IniciarMatriz();
     }
 
@@ -146,12 +147,46 @@ class ListaCruzada
                 Adicionar(new Celula((double)cell.Value, cell.RowIndex + 1, cell.ColumnIndex + 1));
     }
 
+    public ListaCruzada(StreamReader sr)
+    {
+        if (sr != null)
+        {
+            string linhaDimensoes = sr.ReadLine();
+            string[] dimensoes = linhaDimensoes.Split(' ');
+            linhas = int.Parse(dimensoes[0]);
+            colunas = int.Parse(dimensoes[1]);
+            IniciarMatriz();
+            while (!sr.EndOfStream)
+            {
+                string linha = sr.ReadLine();
+                Adicionar(new Celula(linha));
+            }
+            sr.Close();
+        }
+    }
+
 
 
     //Métodos gerais
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void IniciarMatriz()
+    public double this [int i, int j]
+    {
+        get
+        {
+            if (i <= linhas && j <= colunas)
+            {
+                if (ExisteCelula(i, j))
+                    return atual.Valor;
+                else
+                    return 0;
+            }
+            else
+                return 0;
+        }
+    }
+
+    protected void IniciarMatriz()
     {
         primeira = atual = anterior = acima = null;
         primeira = new Celula(Celula.posicaoDefault, Celula.posicaoDefault, null, null);
@@ -211,7 +246,7 @@ class ListaCruzada
                 //noCabecaColunaAtual ganha o valor esperado depois do for
                 if (!atual.Abaixo.Equals(atual))
                     atual.Abaixo = noCabecaColunaAtual; //os ponteiros são desfeitos e, assim, todas as células abaixo da nova última linha são apagadas
-                    //para nao perder a circularidade da lista, a celula Abaixo nao fica nula, mas aponta para o no cabeca correspondente
+                                                        //para nao perder a circularidade da lista, a celula Abaixo nao fica nula, mas aponta para o no cabeca correspondente
                 atual = atual.Direita;
             }
         }
@@ -250,6 +285,27 @@ class ListaCruzada
         colunas = c;
     }
 
+    public void Exibir(ref DataGridView dgv)
+    {
+        dgv.RowCount = linhas;
+        dgv.ColumnCount = colunas;
+        foreach (DataGridViewRow r in dgv.Rows)
+            foreach (DataGridViewCell c in r.Cells)
+                c.Value = 0;
+        atual = primeira.Abaixo.Direita;
+        while (atual.Linha != Celula.posicaoDefault)
+        {
+            while (atual.Coluna != Celula.posicaoDefault)
+            {
+                DataGridViewRow row = dgv.Rows[atual.Linha - 1];
+                DataGridViewCell cell = row.Cells[atual.Coluna - 1];
+                cell.Value = atual.Valor;
+                atual = atual.Direita;
+            }
+            atual = atual.Abaixo.Direita;
+        }
+    }
+
     public int Contar()
     {
         atual = primeira.Abaixo.Direita;
@@ -268,7 +324,7 @@ class ListaCruzada
 
     public bool EstaVazia
     {
-        get => primeira == null;
+        get => primeira.Abaixo.Direita == primeira.Abaixo;
     }
     public int Linhas { get => linhas; }
     public int Colunas { get => colunas; }
@@ -305,10 +361,12 @@ class ListaCruzada
         //    }
         //}
         //return achou;
-        atual = primeira;
-        while (atual.Linha != primeira.Linha)
+        atual = primeira.Abaixo.Direita;
+        anterior = primeira.Abaixo;
+        acima = primeira.Direita;
+        while (atual.Linha != Celula.posicaoDefault)
         {
-            while (atual.Coluna != primeira.Coluna)
+            while (atual.Coluna != Celula.posicaoDefault)
             {
                 if (l == atual.Linha && c == atual.Coluna)
                     return true;
@@ -318,22 +376,49 @@ class ListaCruzada
                 {
                     anterior = atual;
                     atual = atual.Direita;
+                    AtualizarAcima();
                 }
             }
-            acima = atual;
-            atual = atual.Abaixo;
+            if (l < atual.Linha)
+                return false;
+            if (atual.Abaixo.Linha == Celula.posicaoDefault)
+                return false;
+            anterior = atual.Abaixo;
+            atual = anterior.Direita;
+            for (acima = primeira.Direita; acima.Coluna < c; acima = acima.Direita) { }
         }
         return false;
     }
 
-    public double Achar(int l, int c)
+    protected void AtualizarAcima()
     {
-        if (l > linhas || c > colunas)
-            throw new ArgumentOutOfRangeException();
-        if (ExisteCelula(l, c))
-            return atual.Valor;
+        //if (acima.Direita.Coluna == atual.Coluna) //se a celula a direita da linha acima estiver na mesma coluna que atual
+        //    acima = acima.Direita; //acima apenas vai para a direita
+        //else //se nao estiver na mesma coluna
+        //{
+        //    for (acima = atual; acima.Linha != Celula.posicaoDefault; acima = acima.Abaixo) { } //acima eh o no cabeca da coluna atual
+        //    if (acima.Abaixo != acima) //se o ultimo termo antes de atual nao for um no cabeca
+        //    {
+        //        while (acima.Abaixo.Linha < atual.Linha)
+        //            acima = acima.Abaixo;
+        //        //ao fim do while, acima sera a celula logo acima de atual
+        //    }
+        //}
+        //if (atual.Coluna == Celula.posicaoDefault)
+        //    acima = primeira.Direita;
+
+        if (atual.Coluna == Celula.posicaoDefault)
+            acima = primeira.Direita;
         else
-            return 0;
+        {
+            for (acima = atual; acima.Linha != Celula.posicaoDefault; acima = acima.Abaixo) { } //acima eh o no cabeca da coluna atual
+            if (acima.Abaixo != acima) //se o ultimo termo antes de atual nao for um no cabeca
+            {
+                while (acima.Abaixo.Linha < atual.Linha)
+                    acima = acima.Abaixo;
+                //ao fim do while, acima sera a celula logo acima de atual
+            }
+        }
     }
 
     public void Adicionar(Celula c)
@@ -351,7 +436,10 @@ class ListaCruzada
         {
             c.Direita = atual;
             anterior.Direita = c;
-            c.Abaixo = acima.Abaixo;
+            if (acima.Linha > Celula.posicaoDefault)
+                c.Abaixo = acima.Abaixo;
+            else
+                c.Abaixo = acima;
             acima.Abaixo = c;
         }
     }
@@ -376,10 +464,34 @@ class ListaCruzada
         }
     }
 
+    public void RemoverTudo()
+    {
+        IniciarMatriz();
+    }
+
     public void Alterar(int l, int c, double v)
     {
         if (ExisteCelula(l, c))
             atual.Valor = v;
+    }
+
+    public void Salvar(StreamWriter sw)
+    {
+        if (sw != null)
+        {
+            sw.WriteLine(linhas + " " + colunas);
+            atual = primeira.Abaixo.Direita;
+            while (atual.Linha != Celula.posicaoDefault)
+            {
+                while (atual.Coluna != Celula.posicaoDefault)
+                {
+                    sw.WriteLine(atual.ParaArquivo());
+                    atual = atual.Direita;
+                }
+                atual = atual.Abaixo.Direita;
+            }
+            sw.Close();
+        }
     }
 
 

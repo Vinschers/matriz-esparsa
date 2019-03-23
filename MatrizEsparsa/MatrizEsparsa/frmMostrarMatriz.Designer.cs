@@ -46,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtValorCelula = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.dlgSalvar = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLinha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColuna)).BeginInit();
@@ -53,6 +55,9 @@
             // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToResizeRows = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(1, 1);
             this.dgv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -60,6 +65,7 @@
             this.dgv.Size = new System.Drawing.Size(773, 549);
             this.dgv.TabIndex = 0;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            this.dgv.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellValueChanged);
             // 
             // btnLerArquivo
             // 
@@ -74,7 +80,6 @@
             // 
             // btnExibirMatriz
             // 
-            this.btnExibirMatriz.Enabled = false;
             this.btnExibirMatriz.Location = new System.Drawing.Point(16, 642);
             this.btnExibirMatriz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnExibirMatriz.Name = "btnExibirMatriz";
@@ -97,7 +102,6 @@
             // 
             // btnExcluirMatriz
             // 
-            this.btnExcluirMatriz.Enabled = false;
             this.btnExcluirMatriz.Location = new System.Drawing.Point(197, 574);
             this.btnExcluirMatriz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnExcluirMatriz.Name = "btnExcluirMatriz";
@@ -105,6 +109,7 @@
             this.btnExcluirMatriz.TabIndex = 4;
             this.btnExcluirMatriz.Text = "Excluir Matriz";
             this.btnExcluirMatriz.UseVisualStyleBackColor = true;
+            this.btnExcluirMatriz.Click += new System.EventHandler(this.btnExcluirMatriz_Click);
             // 
             // btnExcluirCelula
             // 
@@ -144,17 +149,37 @@
             // 
             this.nUDLinha.Location = new System.Drawing.Point(465, 606);
             this.nUDLinha.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.nUDLinha.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nUDLinha.Name = "nUDLinha";
             this.nUDLinha.Size = new System.Drawing.Size(85, 23);
             this.nUDLinha.TabIndex = 8;
+            this.nUDLinha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUDColuna
             // 
             this.nUDColuna.Location = new System.Drawing.Point(465, 644);
             this.nUDColuna.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.nUDColuna.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nUDColuna.Name = "nUDColuna";
             this.nUDColuna.Size = new System.Drawing.Size(85, 23);
             this.nUDColuna.TabIndex = 9;
+            this.nUDColuna.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // dlgArquivo
             // 
@@ -229,12 +254,24 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Valor:";
             // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(890, 703);
+            this.btnSalvar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(139, 40);
+            this.btnSalvar.TabIndex = 17;
+            this.btnSalvar.Text = "Salvar Matriz";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
             // frmMostrarMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1043, 756);
+            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtValorCelula);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -256,6 +293,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "frmMostrarMatriz";
             this.Text = "Exibição da Matriz";
+            this.Load += new System.EventHandler(this.frmMostrarMatriz_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLinha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColuna)).EndInit();
@@ -284,5 +322,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtValorCelula;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.SaveFileDialog dlgSalvar;
     }
 }
