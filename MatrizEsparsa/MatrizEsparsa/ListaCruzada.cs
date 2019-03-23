@@ -356,6 +356,12 @@ class ListaCruzada
         }
     }
 
+    public void Alterar(int l, int c, double v)
+    {
+        if (ExisteCelula(l, c))
+            atual.Valor = v;
+    }
+
 
 
     //Operações

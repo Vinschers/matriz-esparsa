@@ -92,5 +92,17 @@ namespace MatrizEsparsa
                 e.Handled = true;
             }
         }
+
+        private void txtValorCelula_TextChanged(object sender, EventArgs e)
+        {
+            int linha = (int)nUDLinha.Value;
+            int coluna = (int)nUDColuna.Value;
+            if (matriz.Achar(linha, coluna) == 0)
+                matriz.Adicionar(new Celula(double.Parse(txtValorCelula.Text), linha, coluna));
+            else
+            {
+                matriz.Alterar(linha, coluna, double.Parse(txtValorCelula.Text));
+            }
+        }
     }
 }

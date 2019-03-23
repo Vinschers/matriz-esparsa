@@ -214,6 +214,7 @@
             this.txtValorCelula.Name = "txtValorCelula";
             this.txtValorCelula.Size = new System.Drawing.Size(62, 23);
             this.txtValorCelula.TabIndex = 16;
+            this.txtValorCelula.TextChanged += new System.EventHandler(this.txtValorCelula_TextChanged);
             this.txtValorCelula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorCelula_KeyPress);
             // 
             // label5
