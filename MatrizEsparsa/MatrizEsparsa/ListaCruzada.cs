@@ -498,19 +498,42 @@ class ListaCruzada
 
     //Operações
     /////////////////////////////////////////////////////////////////////////////////////////////
-    public static ListaCruzada Somar(ListaCruzada l1, ListaCruzada l2)
+    public ListaCruzada Somar( ListaCruzada l2)
+    {
+        if (!Colunas.Equals(l2.Colunas) || !Linhas.Equals(l2.Linhas))  // confere se o número de linhas e colunas é o mesmo da matriz this
+            throw new Exception("O tamanho da matriz passada deve ser o mesmo da primeira matriz para somar!");
+
+        ListaCruzada listaSoma = new ListaCruzada(linhas,colunas); // declara e instancia a lista que será retornada
+
+        atual = this.primeira.Abaixo.Direita;
+        l2.atual = l2.primeira.Abaixo.Direita;
+
+        for (int l = 0; l <= linhas; l++)
+
+        {
+            for(int c = 0; c < colunas; c++)
+            {
+                Celula add = new Celula((atual.Valor+l2.atual.Valor), l,c);
+                listaSoma.Adicionar(add);
+                atual = atual.Direita;
+                l2.atual = l2.atual.Direita;
+            }
+            atual = atual.Abaixo.Direita;
+            l2.atual = l2.atual.Abaixo.Direita;
+        }
+        return listaSoma;
+        
+    }
+
+    public ListaCruzada Multiplicar( ListaCruzada l2)
     {
         throw new NotImplementedException();
     }
-    public static ListaCruzada Multiplicar(ListaCruzada l1, ListaCruzada l2)
+    public ListaCruzada Inverter()
     {
         throw new NotImplementedException();
     }
-    public static ListaCruzada Inverter(ListaCruzada l1, ListaCruzada l2)
-    {
-        throw new NotImplementedException();
-    }
-    public static ListaCruzada Transpor(ListaCruzada l1, ListaCruzada l2)
+    public ListaCruzada Transpor()
     {
         throw new NotImplementedException();
     }

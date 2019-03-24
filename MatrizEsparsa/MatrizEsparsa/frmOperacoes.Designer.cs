@@ -39,6 +39,8 @@
             this.btnTranspor = new System.Windows.Forms.Button();
             this.btnInverter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUma = new System.Windows.Forms.Button();
+            this.btnDuas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -59,6 +61,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(735, 454);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // dataGridView3
             // 
@@ -67,22 +70,24 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(735, 454);
             this.dataGridView3.TabIndex = 2;
+            this.dataGridView3.Visible = false;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // btnLer1
             // 
-            this.btnLer1.Location = new System.Drawing.Point(1258, 595);
+            this.btnLer1.Enabled = false;
+            this.btnLer1.Location = new System.Drawing.Point(910, 630);
             this.btnLer1.Name = "btnLer1";
             this.btnLer1.Size = new System.Drawing.Size(121, 45);
             this.btnLer1.TabIndex = 3;
-            this.btnLer1.Text = "Ler Arquivo 1";
+            this.btnLer1.Text = "Ler Arquivo";
             this.btnLer1.UseVisualStyleBackColor = true;
             this.btnLer1.Click += new System.EventHandler(this.btnLer1_Click);
             // 
             // btnSomar
             // 
             this.btnSomar.Enabled = false;
-            this.btnSomar.Location = new System.Drawing.Point(1258, 681);
+            this.btnSomar.Location = new System.Drawing.Point(1177, 721);
             this.btnSomar.Name = "btnSomar";
             this.btnSomar.Size = new System.Drawing.Size(121, 45);
             this.btnSomar.TabIndex = 4;
@@ -92,7 +97,7 @@
             // btnMultiplicar
             // 
             this.btnMultiplicar.Enabled = false;
-            this.btnMultiplicar.Location = new System.Drawing.Point(1436, 681);
+            this.btnMultiplicar.Location = new System.Drawing.Point(1177, 811);
             this.btnMultiplicar.Name = "btnMultiplicar";
             this.btnMultiplicar.Size = new System.Drawing.Size(121, 45);
             this.btnMultiplicar.TabIndex = 5;
@@ -103,11 +108,11 @@
             // btnLer2
             // 
             this.btnLer2.Enabled = false;
-            this.btnLer2.Location = new System.Drawing.Point(1436, 595);
+            this.btnLer2.Location = new System.Drawing.Point(1177, 630);
             this.btnLer2.Name = "btnLer2";
             this.btnLer2.Size = new System.Drawing.Size(121, 45);
             this.btnLer2.TabIndex = 6;
-            this.btnLer2.Text = "Ler Arquivo 2";
+            this.btnLer2.Text = "Ler Arquivos";
             this.btnLer2.UseVisualStyleBackColor = true;
             this.btnLer2.Click += new System.EventHandler(this.btnLer2_Click);
             // 
@@ -118,21 +123,21 @@
             // btnTranspor
             // 
             this.btnTranspor.Enabled = false;
-            this.btnTranspor.Location = new System.Drawing.Point(1258, 764);
+            this.btnTranspor.Location = new System.Drawing.Point(910, 721);
             this.btnTranspor.Name = "btnTranspor";
             this.btnTranspor.Size = new System.Drawing.Size(121, 45);
             this.btnTranspor.TabIndex = 7;
-            this.btnTranspor.Text = "Transpor Matrizes";
+            this.btnTranspor.Text = "Transpor Matriz";
             this.btnTranspor.UseVisualStyleBackColor = true;
             // 
             // btnInverter
             // 
             this.btnInverter.Enabled = false;
-            this.btnInverter.Location = new System.Drawing.Point(1436, 764);
+            this.btnInverter.Location = new System.Drawing.Point(910, 811);
             this.btnInverter.Name = "btnInverter";
             this.btnInverter.Size = new System.Drawing.Size(121, 45);
             this.btnInverter.TabIndex = 8;
-            this.btnInverter.Text = "Inverter Matrizes";
+            this.btnInverter.Text = "Inverter Matriz";
             this.btnInverter.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -145,11 +150,33 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Resultado:";
             // 
+            // btnUma
+            // 
+            this.btnUma.Location = new System.Drawing.Point(910, 544);
+            this.btnUma.Name = "btnUma";
+            this.btnUma.Size = new System.Drawing.Size(121, 45);
+            this.btnUma.TabIndex = 10;
+            this.btnUma.Text = "Uma matriz";
+            this.btnUma.UseVisualStyleBackColor = true;
+            this.btnUma.Click += new System.EventHandler(this.btnUma_Click);
+            // 
+            // btnDuas
+            // 
+            this.btnDuas.Location = new System.Drawing.Point(1177, 548);
+            this.btnDuas.Name = "btnDuas";
+            this.btnDuas.Size = new System.Drawing.Size(121, 45);
+            this.btnDuas.TabIndex = 11;
+            this.btnDuas.Text = "Duas Matrizes";
+            this.btnDuas.UseVisualStyleBackColor = true;
+            this.btnDuas.Click += new System.EventHandler(this.btnDuas_Click);
+            // 
             // frmOperacoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1678, 1061);
+            this.Controls.Add(this.btnDuas);
+            this.Controls.Add(this.btnUma);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnInverter);
             this.Controls.Add(this.btnTranspor);
@@ -184,5 +211,7 @@
         private System.Windows.Forms.Button btnTranspor;
         private System.Windows.Forms.Button btnInverter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUma;
+        private System.Windows.Forms.Button btnDuas;
     }
 }
