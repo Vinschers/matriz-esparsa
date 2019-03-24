@@ -170,7 +170,7 @@ class ListaCruzada
     //Métodos gerais
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    public double this [int i, int j]
+    public double this[int i, int j]
     {
         get
         {
@@ -331,63 +331,47 @@ class ListaCruzada
 
     protected bool ExisteCelula(int l, int c)
     {
-        //bool achou = false;
-        //bool fim = false;
         //atual = primeira.Abaixo.Direita;
-        //while (atual.Abaixo.Linha > primeira.Abaixo.Linha && !fim)
+        //anterior = primeira.Abaixo;
+        //acima = primeira.Direita;
+        //while (atual.Linha != Celula.posicaoDefault)
         //{
-        //    while (atual.Direita.Coluna > primeira.Direita.Coluna && !fim)
+        //    while (atual.Coluna != Celula.posicaoDefault)
         //    {
-        //        if (atual.Coluna == c && atual.Linha < l)
-        //        {
-        //            acima = atual;
-        //        }
-        //        else if (atual.Linha == l && atual.Coluna == c)
-        //        {
-        //            fim = true;
-        //            achou = true;
-        //        }
-        //        else if (atual.Linha > l && atual.Coluna > c)
-        //        {
-        //            fim = true;
-        //        }
+        //        if (l == atual.Linha && c == atual.Coluna)
+        //            return true;
+        //        else if (l <= atual.Linha && c < atual.Coluna)
+        //            return false;
         //        else
+        //        {
+        //            anterior = atual;
         //            atual = atual.Direita;
+        //            AtualizarAcima();
+        //        }
         //    }
-        //    if (!fim)
-        //    {
-        //        anterior = atual;
-        //        atual = atual.Abaixo.Direita;
-        //    }
+        //    if (l < atual.Linha)
+        //        return false;
+        //    if (atual.Abaixo.Linha == Celula.posicaoDefault)
+        //        return false;
+        //    anterior = atual.Abaixo;
+        //    atual = anterior.Direita;
+        //    for (acima = primeira.Direita; acima.Coluna < c; acima = acima.Direita) { }
         //}
-        //return achou;
-        atual = primeira.Abaixo.Direita;
-        anterior = primeira.Abaixo;
-        acima = primeira.Direita;
-        while (atual.Linha != Celula.posicaoDefault)
+        //return false;
+        for (acima = primeira; acima.Coluna < c; acima = acima.Direita) { }
+        if (acima.Abaixo != acima)
+            while (acima.Abaixo.Linha < l && acima.Abaixo.Linha != Celula.posicaoDefault)
+                acima = acima.Abaixo;
+        //acima agora esta acima da celula desejada
+        for (atual = primeira; atual.Linha < l; atual = atual.Abaixo) { }
+        anterior = atual;
+        atual = atual.Direita;
+        while (atual.Coluna < c && atual.Coluna != Celula.posicaoDefault)
         {
-            while (atual.Coluna != Celula.posicaoDefault)
-            {
-                if (l == atual.Linha && c == atual.Coluna)
-                    return true;
-                else if (l <= atual.Linha && c < atual.Coluna)
-                    return false;
-                else
-                {
-                    anterior = atual;
-                    atual = atual.Direita;
-                    AtualizarAcima();
-                }
-            }
-            if (l < atual.Linha)
-                return false;
-            if (atual.Abaixo.Linha == Celula.posicaoDefault)
-                return false;
-            anterior = atual.Abaixo;
-            atual = anterior.Direita;
-            for (acima = primeira.Direita; acima.Coluna < c; acima = acima.Direita) { }
+            anterior = atual;
+            atual = atual.Direita;
         }
-        return false;
+        return (atual.Linha == l && atual.Coluna == c);
     }
 
     protected void AtualizarAcima()
@@ -425,14 +409,7 @@ class ListaCruzada
     {
         if (c == null || c.Linha < 0 || c.Coluna < 0)
             throw new ArgumentException("Célula inválida");
-        if (EstaVazia)
-        {
-            primeira.Abaixo.Direita = c;
-            primeira.Direita.Abaixo = c;
-            c.Direita = primeira.Abaixo;
-            c.Abaixo = primeira.Direita;
-        }
-        else if (!ExisteCelula(c.Linha, c.Coluna))
+        if (!ExisteCelula(c.Linha, c.Coluna))
         {
             c.Direita = atual;
             anterior.Direita = c;
@@ -498,22 +475,21 @@ class ListaCruzada
 
     //Operações
     /////////////////////////////////////////////////////////////////////////////////////////////
-    public ListaCruzada Somar( ListaCruzada l2)
+    public ListaCruzada Somar(ListaCruzada l2)
     {
         if (!Colunas.Equals(l2.Colunas) || !Linhas.Equals(l2.Linhas))  // confere se o número de linhas e colunas é o mesmo da matriz this
             throw new Exception("O tamanho da matriz passada deve ser o mesmo da primeira matriz para somar!");
 
-        ListaCruzada listaSoma = new ListaCruzada(linhas,colunas); // declara e instancia a lista que será retornada
+        ListaCruzada listaSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
         atual = this.primeira.Abaixo.Direita;
         l2.atual = l2.primeira.Abaixo.Direita;
 
         for (int l = 0; l <= linhas; l++)
-
         {
-            for(int c = 0; c < colunas; c++)
+            for (int c = 0; c < colunas; c++)
             {
-                Celula add = new Celula((atual.Valor+l2.atual.Valor), l,c);
+                Celula add = new Celula((atual.Valor + l2.atual.Valor), l, c);
                 listaSoma.Adicionar(add);
                 atual = atual.Direita;
                 l2.atual = l2.atual.Direita;
@@ -522,12 +498,35 @@ class ListaCruzada
             l2.atual = l2.atual.Abaixo.Direita;
         }
         return listaSoma;
-        
+
     }
 
-    public ListaCruzada Multiplicar( ListaCruzada l2)
+    public ListaCruzada Multiplicar(ListaCruzada l2)
     {
-        throw new NotImplementedException();
+        if (colunas != l2.linhas)
+            throw new Exception("Tamanho da matriz B inválido");
+        ListaCruzada listaMultiplicacao = new ListaCruzada(linhas, l2.colunas);
+        for (atual = primeira.Abaixo.Direita;
+            atual.Linha != Celula.posicaoDefault;
+            atual = atual.Abaixo)
+        {
+            double somaAtual = 0;
+            for (l2.atual = l2.primeira.Abaixo.Direita;
+                l2.atual.Coluna != Celula.posicaoDefault;
+                l2.atual = l2.atual.Direita)
+            {
+                while (atual.Coluna != Celula.posicaoDefault && l2.atual.Linha != Celula.posicaoDefault)
+                {
+                    somaAtual += atual.Valor * l2.atual.Valor;
+                    atual = atual.Direita;
+                    l2.atual = l2.atual.Abaixo;
+                }
+                listaMultiplicacao.Adicionar(new Celula(somaAtual, atual.Linha, l2.atual.Coluna));
+                atual = atual.Direita;
+                l2.atual = l2.atual.Abaixo;
+            }
+        }
+        return listaMultiplicacao;
     }
     public ListaCruzada Inverter()
     {

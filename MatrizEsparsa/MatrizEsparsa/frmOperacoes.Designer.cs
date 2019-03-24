@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dgvA = new System.Windows.Forms.DataGridView();
+            this.dgvResultado = new System.Windows.Forms.DataGridView();
+            this.dgvB = new System.Windows.Forms.DataGridView();
             this.btnLer1 = new System.Windows.Forms.Button();
             this.btnSomar = new System.Windows.Forms.Button();
             this.btnMultiplicar = new System.Windows.Forms.Button();
@@ -41,37 +41,37 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnUma = new System.Windows.Forms.Button();
             this.btnDuas = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvB)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvA
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(39, 62);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(735, 454);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvA.Location = new System.Drawing.Point(39, 62);
+            this.dgvA.Name = "dgvA";
+            this.dgvA.Size = new System.Drawing.Size(735, 454);
+            this.dgvA.TabIndex = 0;
             // 
-            // dataGridView2
+            // dgvResultado
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(39, 595);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(735, 454);
-            this.dataGridView2.TabIndex = 1;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.dgvResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultado.Location = new System.Drawing.Point(39, 595);
+            this.dgvResultado.Name = "dgvResultado";
+            this.dgvResultado.Size = new System.Drawing.Size(735, 454);
+            this.dgvResultado.TabIndex = 1;
+            this.dgvResultado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // dataGridView3
+            // dgvB
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(822, 62);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(735, 454);
-            this.dataGridView3.TabIndex = 2;
-            this.dataGridView3.Visible = false;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            this.dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvB.Location = new System.Drawing.Point(822, 62);
+            this.dgvB.Name = "dgvB";
+            this.dgvB.Size = new System.Drawing.Size(735, 454);
+            this.dgvB.TabIndex = 2;
+            this.dgvB.Visible = false;
+            this.dgvB.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // btnLer1
             // 
@@ -80,7 +80,7 @@
             this.btnLer1.Name = "btnLer1";
             this.btnLer1.Size = new System.Drawing.Size(121, 45);
             this.btnLer1.TabIndex = 3;
-            this.btnLer1.Text = "Ler Arquivo";
+            this.btnLer1.Text = "Ler Arquivo A";
             this.btnLer1.UseVisualStyleBackColor = true;
             this.btnLer1.Click += new System.EventHandler(this.btnLer1_Click);
             // 
@@ -93,6 +93,7 @@
             this.btnSomar.TabIndex = 4;
             this.btnSomar.Text = "Somar Matrizes";
             this.btnSomar.UseVisualStyleBackColor = true;
+            this.btnSomar.Click += new System.EventHandler(this.btnSomar_Click);
             // 
             // btnMultiplicar
             // 
@@ -112,7 +113,7 @@
             this.btnLer2.Name = "btnLer2";
             this.btnLer2.Size = new System.Drawing.Size(121, 45);
             this.btnLer2.TabIndex = 6;
-            this.btnLer2.Text = "Ler Arquivos";
+            this.btnLer2.Text = "Ler Arquivo B";
             this.btnLer2.UseVisualStyleBackColor = true;
             this.btnLer2.Click += new System.EventHandler(this.btnLer2_Click);
             // 
@@ -184,15 +185,15 @@
             this.Controls.Add(this.btnMultiplicar);
             this.Controls.Add(this.btnSomar);
             this.Controls.Add(this.btnLer1);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvB);
+            this.Controls.Add(this.dgvResultado);
+            this.Controls.Add(this.dgvA);
             this.Name = "frmOperacoes";
             this.Text = "Operações";
             this.Load += new System.EventHandler(this.frmOperacoes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,9 +201,9 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dgvA;
+        private System.Windows.Forms.DataGridView dgvResultado;
+        private System.Windows.Forms.DataGridView dgvB;
         private System.Windows.Forms.Button btnLer1;
         private System.Windows.Forms.Button btnSomar;
         private System.Windows.Forms.Button btnMultiplicar;

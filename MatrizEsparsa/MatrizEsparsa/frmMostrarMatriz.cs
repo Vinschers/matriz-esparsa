@@ -14,6 +14,7 @@ namespace MatrizEsparsa
     public partial class frmMostrarMatriz : Form
     {
         ListaCruzada matriz;
+        const string arquivo = "matrizA.txt";
         bool exibindoMatriz = false, exibindoValorDaCelula;
         public frmMostrarMatriz()
         {
@@ -24,10 +25,10 @@ namespace MatrizEsparsa
         private void btnLerArquivo_Click(object sender, EventArgs e) // permite que o usuário exiba a matriz após a leitura
         {
             btnExibirMatriz.Enabled = true;
-            if (File.Exists("matriz.txt"))
-                matriz = new ListaCruzada(new StreamReader("matriz.txt"));
+            if (File.Exists(arquivo))
+                matriz = new ListaCruzada(new StreamReader(arquivo));
             else
-                File.Create("matriz.txt");
+                File.Create(arquivo);
         }
 
         private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
@@ -134,7 +135,7 @@ namespace MatrizEsparsa
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            matriz.Salvar(new StreamWriter("matriz.txt"));
+            matriz.Salvar(new StreamWriter(arquivo));
         }
 
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
