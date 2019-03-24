@@ -485,9 +485,9 @@ class ListaCruzada
         atual = this.primeira.Abaixo.Direita;
         l2.atual = l2.primeira.Abaixo.Direita;
 
-        for (int l = 0; l <= linhas; l++)
+        for (int l = 1; l <= linhas; l++)
         {
-            for(int c = 0; c <= colunas; c++)
+            for(int c = 1; c <= colunas; c++)
             {
                 
                 Celula add = new Celula((atual.Valor + l2.atual.Valor), l, c);
