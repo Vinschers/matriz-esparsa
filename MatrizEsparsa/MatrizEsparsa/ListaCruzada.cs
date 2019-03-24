@@ -511,10 +511,14 @@ class ListaCruzada
         for (int l = 0; l <= linhas; l++)
 
         {
-            for(int c = 0; c < colunas; c++)
+            for(int c = 0; c <= colunas; c++)
             {
-                Celula add = new Celula((atual.Valor+l2.atual.Valor), l,c);
-                listaSoma.Adicionar(add);
+                
+                Celula add = new Celula((atual.Valor + l2.atual.Valor), l, c);
+                if (add.Valor != 0)
+                {
+                    listaSoma.Adicionar(add);
+                }
                 atual = atual.Direita;
                 l2.atual = l2.atual.Direita;
             }
