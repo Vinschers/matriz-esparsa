@@ -534,12 +534,18 @@ class ListaCruzada
         }
         return listaMultiplicacao;
     }
+
     public ListaCruzada Inverter()
     {
         throw new NotImplementedException();
     }
+
     public ListaCruzada Transpor()
     {
-        throw new NotImplementedException();
+        ListaCruzada listaTranposta = new ListaCruzada();
+
+
+
+        return listaTranposta;
     }
 }
