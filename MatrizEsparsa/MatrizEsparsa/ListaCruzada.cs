@@ -482,24 +482,26 @@ class ListaCruzada
 
         ListaCruzada listaSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
-        atual = this.primeira.Abaixo.Direita;
-        l2.atual = l2.primeira.Abaixo.Direita;
-
-        for (int l = 1; l <= linhas; l++)
+        for (atual = primeira.Abaixo.Direita, l2.atual = l2.primeira.Abaixo.Direita;
+            atual.Linha != Celula.posicaoDefault && l2.atual.Linha != Celula.posicaoDefault;
+            atual = atual.Abaixo.Direita, l2.atual = l2.atual.Abaixo.Direita)
         {
-            for(int c = 1; c <= colunas; c++)
+            while(atual.Coluna != Celula.posicaoDefault && l2.atual.Coluna != Celula.posicaoDefault)
             {
-                
-                Celula add = new Celula((atual.Valor + l2.atual.Valor), l, c);
-                if (add.Valor != 0)
+                double sum = atual.Valor + l2.atual.Valor;
+                if (sum != 0)
                 {
-                    listaSoma.Adicionar(add);
+                    if (atual.Coluna == l2.atual.Coluna && atual.Linha == l2.atual.Linha)
+                        listaSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
+                    else
+                    {
+                        listaSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
+                        listaSoma.Adicionar(new Celula(l2.atual.Valor, l2.atual.Linha, l2.atual.Coluna));
+                    }
                 }
                 atual = atual.Direita;
                 l2.atual = l2.atual.Direita;
             }
-            atual = atual.Abaixo.Direita;
-            l2.atual = l2.atual.Abaixo.Direita;
         }
         return listaSoma;
 
