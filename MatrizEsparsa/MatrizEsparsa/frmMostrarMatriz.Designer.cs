@@ -47,7 +47,6 @@
             this.txtValorCelula = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.dlgSalvar = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLinha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColuna)).BeginInit();
@@ -183,7 +182,9 @@
             // 
             // dlgArquivo
             // 
-            this.dlgArquivo.FileName = "openFileDialog1";
+            this.dlgArquivo.FileName = "matrizA.txt";
+            this.dlgArquivo.Filter = "Arquivos de texto|*.txt|Todos os arquivos|*.*";
+            this.dlgArquivo.InitialDirectory = ".";
             // 
             // btnAdicionarK
             // 
@@ -207,7 +208,7 @@
             // 
             // txtLargura
             // 
-            this.txtLargura.Location = new System.Drawing.Point(197, 669);
+            this.txtLargura.Location = new System.Drawing.Point(197, 720);
             this.txtLargura.Name = "txtLargura";
             this.txtLargura.Size = new System.Drawing.Size(115, 23);
             this.txtLargura.TabIndex = 12;
@@ -216,7 +217,7 @@
             // 
             // txtAltura
             // 
-            this.txtAltura.Location = new System.Drawing.Point(197, 720);
+            this.txtAltura.Location = new System.Drawing.Point(197, 668);
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(115, 23);
             this.txtAltura.TabIndex = 13;
@@ -323,6 +324,5 @@
         private System.Windows.Forms.TextBox txtValorCelula;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.SaveFileDialog dlgSalvar;
     }
 }

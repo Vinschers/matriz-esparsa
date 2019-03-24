@@ -48,6 +48,9 @@
             // 
             // dgvA
             // 
+            this.dgvA.AllowUserToAddRows = false;
+            this.dgvA.AllowUserToDeleteRows = false;
+            this.dgvA.AllowUserToOrderColumns = true;
             this.dgvA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvA.Location = new System.Drawing.Point(39, 62);
             this.dgvA.Name = "dgvA";
@@ -56,6 +59,9 @@
             // 
             // dgvResultado
             // 
+            this.dgvResultado.AllowUserToAddRows = false;
+            this.dgvResultado.AllowUserToDeleteRows = false;
+            this.dgvResultado.AllowUserToOrderColumns = true;
             this.dgvResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResultado.Location = new System.Drawing.Point(39, 595);
             this.dgvResultado.Name = "dgvResultado";
@@ -65,6 +71,9 @@
             // 
             // dgvB
             // 
+            this.dgvB.AllowUserToAddRows = false;
+            this.dgvB.AllowUserToDeleteRows = false;
+            this.dgvB.AllowUserToOrderColumns = true;
             this.dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvB.Location = new System.Drawing.Point(822, 62);
             this.dgvB.Name = "dgvB";

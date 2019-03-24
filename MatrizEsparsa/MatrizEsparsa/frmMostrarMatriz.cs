@@ -14,8 +14,8 @@ namespace MatrizEsparsa
     public partial class frmMostrarMatriz : Form
     {
         ListaCruzada matriz;
-        const string arquivo = "matrizA.txt";
-        bool exibindoMatriz = false, exibindoValorDaCelula;
+        string arquivo = "matrizA.txt";
+        bool exibindoMatriz = false, exibindoValorDaCelula, alterandoTextDimensao = false;
         public frmMostrarMatriz()
         {
             InitializeComponent();
@@ -24,11 +24,24 @@ namespace MatrizEsparsa
 
         private void btnLerArquivo_Click(object sender, EventArgs e) // permite que o usuário exiba a matriz após a leitura
         {
-            btnExibirMatriz.Enabled = true;
-            if (File.Exists(arquivo))
-                matriz = new ListaCruzada(new StreamReader(arquivo));
-            else
-                File.Create(arquivo);
+            if (dlgArquivo.ShowDialog() == DialogResult.OK)
+            {
+                arquivo = dlgArquivo.FileName;
+                btnExibirMatriz.Enabled = true;
+                if (File.Exists(arquivo))
+                    matriz = new ListaCruzada(new StreamReader(arquivo));
+                else
+                    File.Create(arquivo);
+                alterandoTextDimensao = true;
+                txtLargura.Text = matriz.Colunas.ToString();
+                txtAltura.Text = matriz.Linhas.ToString();
+                alterandoTextDimensao = false;
+                dgv.RowCount = matriz.Linhas;
+                dgv.ColumnCount = matriz.Colunas;
+                exibindoMatriz = true;
+                matriz.Exibir(ref dgv);
+                exibindoMatriz = false;
+            }
         }
 
         private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
@@ -55,14 +68,24 @@ namespace MatrizEsparsa
 
         private void txtLargura_TextChanged(object sender, EventArgs e)
         {
-            if (txtAltura.Text != "" && txtLargura.Text != "")
+            if (txtAltura.Text != "" && txtLargura.Text != "" && !alterandoTextDimensao)
             {
                 int l = int.Parse(txtAltura.Text);
                 int c = int.Parse(txtLargura.Text);
                 nUDColuna.Maximum = c;
                 nUDLinha.Maximum = l;
                 if (l > 1 && c > 1)
+                {
                     matriz.MudarDimensao(l, c);
+                    dgv.RowCount = l;
+                    dgv.ColumnCount = c;
+                    exibindoMatriz = true;
+                    foreach (DataGridViewRow r in dgv.Rows)
+                        foreach (DataGridViewCell co in r.Cells)
+                            co.Value = 0;
+                    matriz.Exibir(ref dgv);
+                    exibindoMatriz = false;
+                }
             }
         }
 
@@ -145,17 +168,27 @@ namespace MatrizEsparsa
                 int linha = e.RowIndex + 1;
                 int coluna = e.ColumnIndex + 1;
                 double valor = Convert.ToDouble(dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-                if (matriz[linha, coluna] == 0)
-                    matriz.Adicionar(new Celula(valor, linha, coluna));
+                if (valor == 0)
+                {
+                    if (matriz[linha, coluna] != 0)
+                        matriz.Remover(linha, coluna);
+                }
                 else
-                    matriz.Alterar(linha, coluna, valor);
+                {
+                    if (matriz[linha, coluna] == 0)
+                        matriz.Adicionar(new Celula(valor, linha, coluna));
+                    else
+                        matriz.Alterar(linha, coluna, valor);
+                }
             }
         }
 
         private void frmMostrarMatriz_Load(object sender, EventArgs e)
         {
+            alterandoTextDimensao = true;
             txtAltura.Text = txtLargura.Text = ListaCruzada.dimensaoDefault.ToString();
             nUDLinha.Maximum = nUDColuna.Maximum = ListaCruzada.dimensaoDefault;
+            alterandoTextDimensao = false;
         }
     }
 }
