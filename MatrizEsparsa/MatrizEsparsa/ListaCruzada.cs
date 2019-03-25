@@ -7,7 +7,7 @@ using System.IO;
 /// </summary>
 class ListaCruzada
 {
-    Celula primeira, atual, anterior, acima;
+    Celula primeira;
     int linhas, colunas;
     public const int dimensaoDefault = 20;
 
@@ -18,7 +18,7 @@ class ListaCruzada
     public override string ToString()
     {
         string ret = "{ ";
-        atual = primeira.Abaixo.Direita;
+        Celula atual = primeira.Abaixo.Direita;
         while (atual.Linha > primeira.Abaixo.Linha)
         {
             while (atual.Coluna > primeira.Coluna)
@@ -62,7 +62,7 @@ class ListaCruzada
 
     public override int GetHashCode()
     {
-        atual = primeira.Abaixo.Direita;
+        Celula atual = primeira.Abaixo.Direita;
         int ret = 34;
         ret = ret * 2 + linhas.GetHashCode();
         ret = ret * 2 + linhas.GetHashCode();
@@ -111,9 +111,6 @@ class ListaCruzada
         if (l == null)
             throw new ArgumentNullException();
         this.primeira = l.primeira;
-        this.atual = l.atual;
-        this.anterior = l.anterior;
-        this.acima = l.acima;
         this.linhas = l.linhas;
         this.colunas = l.colunas;
     }
@@ -176,7 +173,8 @@ class ListaCruzada
         {
             if (i <= linhas && j <= colunas)
             {
-                if (ExisteCelula(i, j))
+                Celula atual;
+                if (ExisteCelula(i, j, out atual))
                     return atual.Valor;
                 else
                     return 0;
@@ -188,9 +186,10 @@ class ListaCruzada
 
     protected void IniciarMatriz()
     {
-        primeira = atual = anterior = acima = null;
+        primeira = null;
         primeira = new Celula(Celula.posicaoDefault, Celula.posicaoDefault, null, null);
-        atual = primeira;
+        Celula atual = primeira;
+        Celula anterior;
         for (int i = 1; i <= colunas; i++)
         {
             atual.Direita = new Celula(Celula.posicaoDefault, i, null, null);
@@ -215,6 +214,7 @@ class ListaCruzada
 
     public void MudarDimensao(int l, int c)
     {
+        Celula atual, anterior;
         if (l > linhas)
         {
             for (atual = primeira; atual.Abaixo != primeira; atual = atual.Abaixo) { } //quando o for acabar, atual será o nó-cabeca da última linha
@@ -291,7 +291,7 @@ class ListaCruzada
         foreach (DataGridViewRow r in dgv.Rows)
             foreach (DataGridViewCell c in r.Cells)
                 c.Value = 0;
-        atual = primeira.Abaixo.Direita;
+        Celula atual = primeira.Abaixo.Direita;
         while (atual.Linha != Celula.posicaoDefault)
         {
             while (atual.Coluna != Celula.posicaoDefault)
@@ -307,7 +307,7 @@ class ListaCruzada
 
     public int Contar()
     {
-        atual = primeira.Abaixo.Direita;
+        Celula atual = primeira.Abaixo.Direita;
         int ret = 0;
         while (atual.Abaixo.Linha > primeira.Abaixo.Linha)
         {
@@ -328,8 +328,27 @@ class ListaCruzada
     public int Linhas { get => linhas; }
     public int Colunas { get => colunas; }
 
-    protected bool ExisteCelula(int l, int c)
+    protected bool ExisteCelula(int l, int c, out Celula acima, out Celula anterior, out Celula atual)
     {
+        for (acima = primeira; acima.Coluna < c; acima = acima.Direita) { }
+        if (acima.Abaixo != acima)
+            while (acima.Abaixo.Linha < l && acima.Abaixo.Linha != Celula.posicaoDefault)
+                acima = acima.Abaixo;
+        //acima agora esta acima da celula desejada
+        for (atual = primeira; atual.Linha < l; atual = atual.Abaixo) { }
+        anterior = atual;
+        atual = atual.Direita;
+        while (atual.Coluna < c && atual.Coluna != Celula.posicaoDefault)
+        {
+            anterior = atual;
+            atual = atual.Direita;
+        }
+        return (atual.Linha == l && atual.Coluna == c);
+    }
+
+    protected bool ExisteCelula(int l, int c, out Celula atual)
+    {
+        Celula acima, anterior;
         for (acima = primeira; acima.Coluna < c; acima = acima.Direita) { }
         if (acima.Abaixo != acima)
             while (acima.Abaixo.Linha < l && acima.Abaixo.Linha != Celula.posicaoDefault)
@@ -351,7 +370,8 @@ class ListaCruzada
     {
         if (c == null || c.Linha < 0 || c.Coluna < 0)
             throw new ArgumentException("Célula inválida");
-        if (!ExisteCelula(c.Linha, c.Coluna))
+        Celula atual, anterior, acima;
+        if (!ExisteCelula(c.Linha, c.Coluna, out acima, out anterior, out atual))
         {
             c.Direita = atual;
             anterior.Direita = c;
@@ -367,7 +387,8 @@ class ListaCruzada
     {
         if (c == null || c.Linha < 0 || c.Coluna < 0)
             throw new ArgumentException("Célula inválida");
-        if (ExisteCelula(c.Linha, c.Coluna))
+        Celula atual, anterior, acima;
+        if (ExisteCelula(c.Linha, c.Coluna, out acima, out anterior, out atual))
         {
             acima.Abaixo = atual.Abaixo;
             anterior.Direita = atual.Direita;
@@ -376,7 +397,8 @@ class ListaCruzada
 
     public void Remover(int l, int c)
     {
-        if (ExisteCelula(l, c))
+        Celula atual, anterior, acima;
+        if (ExisteCelula(l, c, out acima, out anterior, out atual))
         {
             anterior.Direita = atual.Direita;
             acima.Abaixo = atual.Abaixo;
@@ -385,12 +407,13 @@ class ListaCruzada
 
     public void RemoverTudo()
     {
-        primeira = atual = acima = anterior = null;
+        primeira = null;
     }
 
     public void Alterar(int l, int c, double v)
     {
-        if (ExisteCelula(l, c))
+        Celula atual;
+        if (ExisteCelula(l, c, out atual))
             atual.Valor = v;
     }
 
@@ -399,7 +422,7 @@ class ListaCruzada
         if (sw != null)
         {
             sw.WriteLine(linhas + " " + colunas);
-            atual = primeira.Abaixo.Direita;
+            Celula atual = primeira.Abaixo.Direita;
             while (atual.Linha != Celula.posicaoDefault)
             {
                 while (atual.Coluna != Celula.posicaoDefault)
@@ -424,25 +447,25 @@ class ListaCruzada
 
         ListaCruzada matrizSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
-        for (atual = primeira.Abaixo.Direita, l2.atual = l2.primeira.Abaixo.Direita;
-            atual.Linha != Celula.posicaoDefault && l2.atual.Linha != Celula.posicaoDefault;
-            atual = atual.Abaixo.Direita, l2.atual = l2.atual.Abaixo.Direita)
+        for (Celula atual = primeira.Abaixo.Direita, atualL2 = l2.primeira.Abaixo.Direita;
+            atual.Linha != Celula.posicaoDefault && atualL2.Linha != Celula.posicaoDefault;
+            atual = atual.Abaixo.Direita, atualL2 = atualL2.Abaixo.Direita)
         {
-            while(atual.Coluna != Celula.posicaoDefault && l2.atual.Coluna != Celula.posicaoDefault)
+            while (atual.Coluna != Celula.posicaoDefault && atualL2.Coluna != Celula.posicaoDefault)
             {
-                double sum = atual.Valor + l2.atual.Valor;
+                double sum = atual.Valor + atualL2.Valor;
                 if (sum != 0)
                 {
-                    if (atual.Coluna == l2.atual.Coluna && atual.Linha == l2.atual.Linha)
+                    if (atual.Coluna == atualL2.Coluna && atual.Linha == atualL2.Linha)
                         matrizSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
                     else
                     {
                         matrizSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
-                        matrizSoma.Adicionar(new Celula(l2.atual.Valor, l2.atual.Linha, l2.atual.Coluna));
+                        matrizSoma.Adicionar(new Celula(atualL2.Valor, atualL2.Linha, atualL2.Coluna));
                     }
                 }
                 atual = atual.Direita;
-                l2.atual = l2.atual.Direita;
+                atualL2 = atualL2.Direita;
             }
         }
         return matrizSoma;
@@ -454,12 +477,12 @@ class ListaCruzada
         if (colunas != l2.linhas)
             throw new Exception("Tamanho da matriz B inválido");
         ListaCruzada matrizMultiplicacao = new ListaCruzada(linhas, l2.colunas);
-        for (atual = primeira.Abaixo;
+        for (Celula atual = primeira.Abaixo;
             atual.Linha != Celula.posicaoDefault;
             atual = atual.Abaixo)
         {
             double somaAtual = 0;
-            for (l2.atual = l2.primeira.Direita;
+            for (Celula atualL2 = l2.primeira.Direita;
                 l2.atual.Coluna != Celula.posicaoDefault;
                 l2.atual = l2.atual.Direita)
             {

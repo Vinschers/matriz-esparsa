@@ -8,7 +8,7 @@ class Celula
     protected Celula direita, abaixo; //ponteiros para as células que estão à direita e em baixo da célula this
     protected int linha, coluna; //valores que representam a posição da célula na matriz
     protected double valor; //valor que a célula tem
-    public static int posicaoDefault = 0;
+    public const int posicaoDefault = 0;
 
     //propriedades
     /// <summary>
