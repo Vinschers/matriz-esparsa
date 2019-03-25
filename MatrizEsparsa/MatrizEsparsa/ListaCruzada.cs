@@ -385,7 +385,7 @@ class ListaCruzada
 
     public void RemoverTudo()
     {
-        IniciarMatriz();
+        primeira = atual = acima = anterior = null;
     }
 
     public void Alterar(int l, int c, double v)
@@ -422,7 +422,7 @@ class ListaCruzada
         if (!Colunas.Equals(l2.Colunas) || !Linhas.Equals(l2.Linhas))  // confere se o número de linhas e colunas é o mesmo da matriz this
             throw new Exception("O tamanho da matriz passada deve ser o mesmo da primeira matriz para somar!");
 
-        ListaCruzada listaSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
+        ListaCruzada matrizSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
         for (atual = primeira.Abaixo.Direita, l2.atual = l2.primeira.Abaixo.Direita;
             atual.Linha != Celula.posicaoDefault && l2.atual.Linha != Celula.posicaoDefault;
@@ -434,18 +434,18 @@ class ListaCruzada
                 if (sum != 0)
                 {
                     if (atual.Coluna == l2.atual.Coluna && atual.Linha == l2.atual.Linha)
-                        listaSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
+                        matrizSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
                     else
                     {
-                        listaSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
-                        listaSoma.Adicionar(new Celula(l2.atual.Valor, l2.atual.Linha, l2.atual.Coluna));
+                        matrizSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
+                        matrizSoma.Adicionar(new Celula(l2.atual.Valor, l2.atual.Linha, l2.atual.Coluna));
                     }
                 }
                 atual = atual.Direita;
                 l2.atual = l2.atual.Direita;
             }
         }
-        return listaSoma;
+        return matrizSoma;
 
     }
 
@@ -453,7 +453,7 @@ class ListaCruzada
     {
         if (colunas != l2.linhas)
             throw new Exception("Tamanho da matriz B inválido");
-        ListaCruzada listaMultiplicacao = new ListaCruzada(linhas, l2.colunas);
+        ListaCruzada matrizMultiplicacao = new ListaCruzada(linhas, l2.colunas);
         for (atual = primeira.Abaixo;
             atual.Linha != Celula.posicaoDefault;
             atual = atual.Abaixo)
@@ -484,19 +484,20 @@ class ListaCruzada
                     }
                 }
                 if (somaAtual != 0)
-                    listaMultiplicacao.Adicionar(new Celula(somaAtual, atual.Linha, l2.atual.Coluna));
+                    matrizMultiplicacao.Adicionar(new Celula(somaAtual, atual.Linha, l2.atual.Coluna));
                 if (atual.Coluna != Celula.posicaoDefault)
                     while (atual.Coluna != Celula.posicaoDefault) atual = atual.Direita;
                 if (l2.atual.Linha != Celula.posicaoDefault)
                     while (l2.atual.Linha != Celula.posicaoDefault) l2.atual = l2.atual.Abaixo;
             }
         }
-        return listaMultiplicacao;
+        return matrizMultiplicacao;
     }
 
     public ListaCruzada Inverter()
     {
-        throw new NotImplementedException();
+        ListaCruzada matrizInversa = new ListaCruzada();
+        return matrizInversa;
     }
 
     public ListaCruzada Transpor()
