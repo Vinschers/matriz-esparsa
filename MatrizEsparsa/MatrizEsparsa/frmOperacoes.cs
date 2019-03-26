@@ -57,8 +57,12 @@ namespace MatrizEsparsa
 
         private void btnMultiplicar_Click(object sender, EventArgs e)
         {
-            matrizC = matrizA.Multiplicar(matrizB);
-            matrizC.Exibir(ref dgvResultado);
+            try
+            {
+                matrizC = matrizA.Multiplicar(matrizB);
+                matrizC.Exibir(ref dgvResultado);
+            }
+            catch (Exception erro) { MessageBox.Show(erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -68,8 +72,12 @@ namespace MatrizEsparsa
 
         private void btnSomar_Click(object sender, EventArgs e)
         {
-            matrizC = matrizA.Somar(matrizB);
-            matrizC.Exibir(ref dgvResultado);
+            try
+            {
+                matrizC = matrizA.Somar(matrizB);
+                matrizC.Exibir(ref dgvResultado);
+            }
+            catch (Exception erro) { MessageBox.Show(erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
 
         private void btnUma_Click(object sender, EventArgs e)

@@ -134,7 +134,7 @@ class ListaCruzada
     /// Construtor a partir de um DataGridView da aplicação
     /// </summary>
     /// <param name="dgv">DataGridView usado para construir a matriz</param>
-    public ListaCruzada(DataGridView dgv)
+    public ListaCruzada(ref DataGridView dgv)
     {
         linhas = dgv.RowCount;
         colunas = dgv.ColumnCount;
@@ -483,35 +483,31 @@ class ListaCruzada
         {
             double somaAtual = 0;
             for (Celula atualL2 = l2.primeira.Direita;
-                l2.atual.Coluna != Celula.posicaoDefault;
-                l2.atual = l2.atual.Direita)
+                atualL2.Coluna != Celula.posicaoDefault;
+                atualL2 = atualL2.Direita)
             {
                 somaAtual = 0;
                 atual = atual.Direita;
-                l2.atual = l2.atual.Abaixo;
-                while (atual.Coluna != Celula.posicaoDefault && l2.atual.Linha != Celula.posicaoDefault)
+                atualL2 = atualL2.Abaixo;
+                while (atual.Coluna != Celula.posicaoDefault && atualL2.Linha != Celula.posicaoDefault)
                 {
-                    if (atual.Coluna == l2.atual.Linha)
+                    if (atual.Coluna == atualL2.Linha)
                     {
-                        somaAtual += atual.Valor * l2.atual.Valor;
+                        somaAtual += atual.Valor * atualL2.Valor;
                         atual = atual.Direita;
-                        l2.atual = l2.atual.Abaixo;
+                        atualL2 = atualL2.Abaixo;
                     }
-                    else if (atual.Coluna < l2.atual.Linha)
-                    {
+                    else if (atual.Coluna < atualL2.Linha)
                         atual = atual.Direita;
-                    }
                     else
-                    {
-                        l2.atual = l2.atual.Abaixo;
-                    }
+                        atualL2 = atualL2.Abaixo;
                 }
                 if (somaAtual != 0)
-                    matrizMultiplicacao.Adicionar(new Celula(somaAtual, atual.Linha, l2.atual.Coluna));
+                    matrizMultiplicacao.Adicionar(new Celula(somaAtual, atual.Linha, atualL2.Coluna));
                 if (atual.Coluna != Celula.posicaoDefault)
                     while (atual.Coluna != Celula.posicaoDefault) atual = atual.Direita;
-                if (l2.atual.Linha != Celula.posicaoDefault)
-                    while (l2.atual.Linha != Celula.posicaoDefault) l2.atual = l2.atual.Abaixo;
+                if (atualL2.Linha != Celula.posicaoDefault)
+                    while (atualL2.Linha != Celula.posicaoDefault) atualL2 = atualL2.Abaixo;
             }
         }
         return matrizMultiplicacao;

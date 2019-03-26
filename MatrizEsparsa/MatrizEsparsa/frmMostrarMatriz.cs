@@ -14,7 +14,7 @@ namespace MatrizEsparsa
     public partial class frmMostrarMatriz : Form
     {
         ListaCruzada matriz;
-        string arquivo = "matrizA.txt";
+        string arquivo;
         bool exibindoMatriz = false, exibindoValorDaCelula, alterandoTextDimensao = false;
         public frmMostrarMatriz()
         {
@@ -46,6 +46,16 @@ namespace MatrizEsparsa
 
         private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
         {                                                             //informações apenas após a exibição dos dados
+            if (matriz != null)
+            {
+                dgv.RowCount = matriz.Linhas;
+                dgv.ColumnCount = matriz.Colunas;
+                exibindoMatriz = true;
+                matriz.Exibir(ref dgv);
+                exibindoMatriz = false;
+            }
+            else
+                matriz = new ListaCruzada(ref dgv);
             btnExcluirMatriz.Enabled = true;
             btnExcluirCelula.Enabled = true;
             btnExibirCelula.Enabled = true;
@@ -54,11 +64,6 @@ namespace MatrizEsparsa
             nUDColuna.Enabled = true;
             nUDLinha.Enabled = true;
             btnAdicionarK.Enabled = true;
-            dgv.RowCount = matriz.Linhas;
-            dgv.ColumnCount = matriz.Colunas;
-            exibindoMatriz = true;
-            matriz.Exibir(ref dgv);
-            exibindoMatriz = false;
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
