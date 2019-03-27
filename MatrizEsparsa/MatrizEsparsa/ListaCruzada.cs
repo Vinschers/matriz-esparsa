@@ -515,7 +515,17 @@ class ListaCruzada
 
     public ListaCruzada Inverter()
     {
-        ListaCruzada matrizInversa = new ListaCruzada();
+        ListaCruzada matrizInversa = new ListaCruzada(colunas, linhas);
+        for (Celula atual = primeira.Abaixo; atual.Linha < Celula.posicaoDefault; atual = atual.Abaixo)
+        {
+            for (int colunaI = 0; colunaI < matrizInversa.Colunas; colunaI++)
+            {
+                double result = 0;
+                if (colunaI == atual.Linha)
+                    result = 1;
+                //
+            }
+        }
         return matrizInversa;
     }
 
