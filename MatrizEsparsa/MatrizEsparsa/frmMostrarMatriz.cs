@@ -166,6 +166,17 @@ namespace MatrizEsparsa
             matriz.Salvar(new StreamWriter(arquivo));
         }
 
+        //SCHERER, precisa somar K inclusive nas linhas com 0?
+
+        private void btnAdicionarK_Click(object sender, EventArgs e)
+        {
+            int coluna = Convert.ToInt16(nUDColuna.Value);
+            int valor = Convert.ToInt16(txtK.Text);
+            for (int i = 1; i < matriz.Linhas + 1; i++)
+                matriz.Alterar(i, coluna, matriz[i, coluna] + valor);
+            matriz.Exibir(ref dgv);
+        }
+
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (!exibindoMatriz)

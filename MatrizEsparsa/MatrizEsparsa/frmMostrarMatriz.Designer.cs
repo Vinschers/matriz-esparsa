@@ -47,6 +47,8 @@
             this.txtValorCelula = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.txtK = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLinha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColuna)).BeginInit();
@@ -189,12 +191,13 @@
             // btnAdicionarK
             // 
             this.btnAdicionarK.Enabled = false;
-            this.btnAdicionarK.Location = new System.Drawing.Point(850, 474);
+            this.btnAdicionarK.Location = new System.Drawing.Point(713, 680);
             this.btnAdicionarK.Name = "btnAdicionarK";
             this.btnAdicionarK.Size = new System.Drawing.Size(144, 57);
             this.btnAdicionarK.TabIndex = 10;
             this.btnAdicionarK.Text = "Adicionar K na coluna";
             this.btnAdicionarK.UseVisualStyleBackColor = true;
+            this.btnAdicionarK.Click += new System.EventHandler(this.btnAdicionarK_Click);
             // 
             // label3
             // 
@@ -266,12 +269,30 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // txtK
+            // 
+            this.txtK.Location = new System.Drawing.Point(736, 631);
+            this.txtK.Name = "txtK";
+            this.txtK.Size = new System.Drawing.Size(100, 23);
+            this.txtK.TabIndex = 18;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(710, 631);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 17);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "K:";
+            // 
             // frmMostrarMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1043, 756);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtK);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtValorCelula);
             this.Controls.Add(this.label5);
@@ -324,5 +345,7 @@
         private System.Windows.Forms.TextBox txtValorCelula;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.TextBox txtK;
+        private System.Windows.Forms.Label label6;
     }
 }
