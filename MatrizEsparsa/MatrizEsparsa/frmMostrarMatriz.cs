@@ -172,7 +172,9 @@ namespace MatrizEsparsa
             int coluna = Convert.ToInt16(nUDColuna.Value);
             double valor = Convert.ToDouble(txtK.Text);
             matriz.SomarNaColuna(coluna, valor);
+            exibindoMatriz = true;
             matriz.Exibir(ref dgv);
+            exibindoMatriz = false;
         }
 
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
