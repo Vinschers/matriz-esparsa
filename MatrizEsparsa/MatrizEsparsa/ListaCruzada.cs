@@ -336,7 +336,7 @@ class ListaCruzada
         //acima agora esta acima da celula desejada
         for (anterior = primeira; anterior.Linha < l; anterior = anterior.Abaixo) { }
         anterior = anterior.Direita;
-        while (anterior.Coluna < c && anterior.Coluna != Celula.posicaoDefault) anterior = anterior.Direita;
+        while (anterior.Direita.Coluna < c && anterior.Direita.Coluna != Celula.posicaoDefault) anterior = anterior.Direita;
         return (anterior.Direita.Coluna == c && acima.Abaixo.Linha == l);
     }
 
@@ -356,10 +356,7 @@ class ListaCruzada
         {
             c.Direita = anterior.Direita;
             anterior.Direita = c;
-            if (acima.Linha > Celula.posicaoDefault)
-                c.Abaixo = acima.Abaixo;
-            else
-                c.Abaixo = acima;
+            c.Abaixo = acima.Abaixo;
             acima.Abaixo = c;
         }
     }
@@ -397,11 +394,12 @@ class ListaCruzada
     {
         if (c < 1 || c > colunas)
             throw new ArgumentOutOfRangeException("Coluna inválida");
-        Celula atual;
-        for (atual = primeira; atual.Coluna < c; atual = atual.Direita) { }
+        Celula atual = primeira.Direita;
+        while (atual.Coluna != c) { atual = atual.Direita; }
         atual = atual.Abaixo;
-        while(atual.Linha != Celula.posicaoDefault)
+        while (atual.Linha != Celula.posicaoDefault)
         {
+            //Alterar(atual.Linha, c, atual.Valor + k);
             atual.Valor += k;
             atual = atual.Abaixo;
         }

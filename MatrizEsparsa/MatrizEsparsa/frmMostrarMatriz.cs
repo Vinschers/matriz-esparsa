@@ -46,7 +46,7 @@ namespace MatrizEsparsa
 
         private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
         {                                                             //informações apenas após a exibição dos dados
-            if (matriz != null)
+            /*if (matriz != null)
             {
                 dgv.RowCount = matriz.Linhas;
                 dgv.ColumnCount = matriz.Colunas;
@@ -55,7 +55,7 @@ namespace MatrizEsparsa
                 exibindoMatriz = false;
             }
             else
-                matriz = new ListaCruzada(ref dgv);
+                matriz = new ListaCruzada(ref dgv);*/
             btnExcluirMatriz.Enabled = true;
             btnExcluirCelula.Enabled = true;
             btnExibirCelula.Enabled = true;
@@ -166,14 +166,12 @@ namespace MatrizEsparsa
             matriz.Salvar(new StreamWriter(arquivo));
         }
 
-        //SCHERER, precisa somar K inclusive nas linhas com 0?
 
         private void btnAdicionarK_Click(object sender, EventArgs e)
         {
             int coluna = Convert.ToInt16(nUDColuna.Value);
-            int valor = Convert.ToInt16(txtK.Text);
-            for (int i = 1; i < matriz.Linhas + 1; i++)
-                matriz.Alterar(i, coluna, matriz[i, coluna] + valor);
+            double valor = Convert.ToDouble(txtK.Text);
+            matriz.SomarNaColuna(coluna, valor);
             matriz.Exibir(ref dgv);
         }
 
