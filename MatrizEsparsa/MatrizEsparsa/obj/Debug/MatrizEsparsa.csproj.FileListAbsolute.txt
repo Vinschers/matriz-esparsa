@@ -33,3 +33,14 @@ C:\Users\u18178\Desktop\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\Mat
 C:\Users\u18178\Desktop\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.CoreCompileInputs.cache
 C:\Users\u18178\Desktop\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.exe
 C:\Users\u18178\Desktop\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe.config
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.exe
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\bin\Debug\MatrizEsparsa.pdb
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmMostrarMatriz.resources
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmOperacoes.resources
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.frmPrincipal.resources
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.Properties.Resources.resources
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.GenerateResource.Cache
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csproj.CoreCompileInputs.cache
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.exe
+C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb

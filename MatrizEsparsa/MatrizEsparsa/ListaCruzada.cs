@@ -397,11 +397,91 @@ class ListaCruzada
         Celula atual = primeira.Direita;
         while (atual.Coluna != c) { atual = atual.Direita; }
         atual = atual.Abaixo;
+        /*while (atual.Linha != Celula.posicaoDefault)
+        {
+            /*if (atual.Linha != atual.Abaixo.Linha - 1)
+                atual.Valor += k;
+            if (/*atual.Abaixo.Linha == Celula.posicaoDefault || atual.Linha != atual.Abaixo.Linha - 1)
+            {
+                atual.Valor += k;
+                atual = atual.Abaixo;
+            }
+            if(atual.Linha == atual.Abaixo.Linha - 1 && atual.Linha != Celula.posicaoDefault)
+            {
+                Celula anterior = primeira.Abaixo;
+                Celula acima = primeira.Direita;
+                while (acima.Direita.Coluna != atual.Coluna) acima = acima.Direita;
+                while (acima.Abaixo.Linha != atual.Linha) acima = acima.Abaixo;
+                while (anterior.Linha != atual.Linha)
+                { anterior = anterior.Abaixo; }
+                while (anterior.Direita.Coluna != atual.Coluna)
+                { anterior = anterior.Direita; }
+                Celula ce = new Celula(k, anterior.Linha, c, acima, anterior);
+                /*ce.Direita = anterior.Direita;
+                anterior.Direita = ce;
+                ce.Abaixo = acima.Abaixo;
+                acima.Abaixo = ce;
+                atual = ce;
+            }
+            else if (atual.Linha == atual.Abaixo.Linha - 1)
+            {
+                while (atual.Abaixo.Linha != Celula.posicaoDefault) atual = atual.Abaixo;
+                while (atual.Linha < linhas)
+                {
+                    Celula anterior = primeira.Abaixo;
+                    while (anterior.Linha != atual.Linha)
+                    { anterior = anterior.Abaixo; }
+                    while (anterior.Direita.Coluna != atual.Coluna)
+                    { anterior = anterior.Direita; }
+                    Celula ce = new Celula(k, anterior.Linha + 1, atual.Coluna, atual.Abaixo, anterior);
+                    ce.Direita = anterior.Direita;
+                    anterior.Direita = ce;
+                    ce.Abaixo = atual.Abaixo;
+                    atual.Abaixo = ce;
+                    atual = atual.Abaixo;
+                }
+                return;
+            }
+        }*/
         while (atual.Linha != Celula.posicaoDefault)
         {
-            //Alterar(atual.Linha, c, atual.Valor + k);
+            Celula ce = null;
+
+            if (atual.Abaixo.Linha != atual.Linha + 1 && atual.Linha < linhas)
+            {
+                //adicionar nova celula com valor k
+                Celula acima = atual;
+                ce = new Celula(k, atual.Linha + 1, atual.Coluna);
+                ce.Abaixo = acima.Abaixo;
+                acima.Abaixo = ce;
+                Celula anterior = primeira.Abaixo;
+                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                //anterior = anterior.Direita;
+                if (anterior.Coluna != Celula.posicaoDefault)
+                    while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
+                ce.Direita = anterior.Direita;
+                anterior.Direita = ce;
+                if (ce.Linha == linhas)
+                    return;
+            }
             atual.Valor += k;
             atual = atual.Abaixo;
+        }
+        if (atual.Abaixo == atual)
+        {
+            while(atual.Linha != linhas)
+            {
+                Celula ce = new Celula(k, atual.Linha + 1, atual.Coluna);
+                ce.Abaixo = atual.Abaixo;
+                atual.Abaixo = ce;
+                Celula anterior = primeira.Abaixo;
+                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                if (anterior.Coluna != Celula.posicaoDefault)
+                    while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
+                ce.Direita = anterior.Direita;
+                anterior.Direita = ce;
+                atual = atual.Abaixo;
+            }
         }
     }
 
