@@ -396,10 +396,25 @@ class ListaCruzada
         if (c < 1 || c > colunas)
             throw new ArgumentOutOfRangeException("Coluna inválida");
         Celula atual = primeira;
-        while (atual.Coluna != c) { atual = atual.Direita;}
-        atual = atual.Abaixo;
         int qtdLinhasSomadas = 0;
-        while(qtdLinhasSomadas != linhas +1)
+        while (atual.Coluna != c) { atual = atual.Direita;}
+        if(atual.Abaixo.Linha != Celula.posicaoDefault + 1 )
+        {
+            Celula acima = atual;
+            Celula ce = new Celula(k, Celula.posicaoDefault + 1, atual.Coluna);
+            Celula anterior;
+            if (!ExisteCelula(ce.Linha, ce.Coluna, out acima, out anterior))
+            {
+                ce.Direita = anterior.Direita;
+                anterior.Direita = ce;
+                ce.Abaixo = acima.Abaixo;
+                acima.Abaixo = ce;
+            }
+            atual = atual.Abaixo;
+            qtdLinhasSomadas = 1;
+        }
+        atual = atual.Abaixo;
+        while (qtdLinhasSomadas != linhas)
         {
             
             if (atual.Abaixo.Linha != atual.Linha + 1 || atual.Linha < linhas)
@@ -441,7 +456,7 @@ class ListaCruzada
                 ce.Abaixo = atual.Abaixo;
                 atual.Abaixo = ce;
                 Celula anterior = primeira.Abaixo;
-                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                while (anterior.Linha != atual.Linha +1) anterior = anterior.Abaixo;
                 if (anterior.Coluna != Celula.posicaoDefault)
                     while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
                 ce.Direita = anterior.Direita;
