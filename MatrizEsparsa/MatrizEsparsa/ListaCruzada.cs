@@ -390,16 +390,16 @@ class ListaCruzada
         primeira = null;
     }
 
-    public void SomarNaColuna(int c, double k)
+    /*public void SomarNaColunaScherer(int c, double k)
     {
         if (c < 1 || c > colunas)
             throw new ArgumentOutOfRangeException("Coluna inválida");
         Celula atual = primeira.Direita;
         while (atual.Coluna != c) { atual = atual.Direita; }
         atual = atual.Abaixo;
-        int qtdLinhas = 0;
         while (atual.Linha != Celula.posicaoDefault)
         {
+            //Alterar(atual.Linha, c, atual.Valor + k);
             Celula ce = null;
 
             if (atual.Abaixo.Linha != atual.Linha + 1 && atual.Linha < linhas)
@@ -411,23 +411,20 @@ class ListaCruzada
                 acima.Abaixo = ce;
                 Celula anterior = primeira.Abaixo;
                 while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                //anterior = anterior.Direita;
                 if (anterior.Coluna != Celula.posicaoDefault)
                     while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
                 ce.Direita = anterior.Direita;
                 anterior.Direita = ce;
-
-                if (qtdLinhas == linhas)
+                if (ce.Linha == linhas)
                     return;
             }
-            if (atual.Abaixo.Linha == atual.Linha + 1) { qtdLinhas++; }
             atual.Valor += k;
             atual = atual.Abaixo;
-            /*else */if (qtdLinhas == linhas)
-                return;
         }
         if (atual.Abaixo == atual)
         {
-            while(atual.Linha != linhas)
+            while (atual.Linha != linhas)
             {
                 Celula ce = new Celula(k, atual.Linha + 1, atual.Coluna);
                 ce.Abaixo = atual.Abaixo;
@@ -441,6 +438,67 @@ class ListaCruzada
                 atual = atual.Abaixo;
             }
         }
+    }*/
+
+    public void SomarNaColuna(int c, double k)
+    {
+        if (c < 1 || c > colunas)
+            throw new ArgumentOutOfRangeException("Coluna inválida");
+        Celula atual = primeira;
+        while (atual.Coluna != c) { atual = atual.Direita;}
+        atual = atual.Abaixo;
+        int qtdLinhasSomadas = 0;
+        while(qtdLinhasSomadas != linhas +1)
+        {
+            
+            if (atual.Abaixo.Linha != atual.Linha + 1 || atual.Linha < linhas)
+            {
+                if (!ExisteCelula(atual.Linha, c, out atual))
+                {
+                    //adicionar nova celula com valor k
+                    Celula acima = atual;
+                    Celula ce = new Celula(k, atual.Linha + 1, atual.Coluna);
+                    ce.Abaixo = acima.Abaixo;
+                    acima.Abaixo = ce;
+                    Celula anterior = primeira.Abaixo;
+                    while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                    //anterior = anterior.Direita;
+                    if (anterior.Coluna != Celula.posicaoDefault)
+                        while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
+                    ce.Direita = anterior.Direita;
+                    anterior.Direita = ce;
+                    if (ce.Linha == linhas)
+                        return;
+                }
+            }
+            if (atual.Linha == Celula.posicaoDefault)
+            {
+                atual = atual.Abaixo;
+                break;
+            }
+            if (atual.Linha + 1 == atual.Abaixo.Linha || atual.Abaixo.Linha == Celula.posicaoDefault)
+                atual.Valor += k;
+            atual = atual.Abaixo;
+            qtdLinhasSomadas++;
+        }
+
+        if (atual.Abaixo == atual || atual.Abaixo.Linha == Celula.posicaoDefault)
+        {
+            while (atual.Linha != linhas)
+            {
+                Celula ce = new Celula(k, atual.Linha + 1, atual.Coluna);
+                ce.Abaixo = atual.Abaixo;
+                atual.Abaixo = ce;
+                Celula anterior = primeira.Abaixo;
+                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
+                if (anterior.Coluna != Celula.posicaoDefault)
+                    while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
+                ce.Direita = anterior.Direita;
+                anterior.Direita = ce;
+                atual = atual.Abaixo;
+            }
+        }
+
     }
 
     public void Alterar(int l, int c, double v)
