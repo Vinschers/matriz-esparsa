@@ -30,7 +30,6 @@
         {
             this.dgv = new System.Windows.Forms.DataGridView();
             this.btnLerArquivo = new System.Windows.Forms.Button();
-            this.btnExibirMatriz = new System.Windows.Forms.Button();
             this.btnExibirCelula = new System.Windows.Forms.Button();
             this.btnExcluirMatriz = new System.Windows.Forms.Button();
             this.btnExcluirCelula = new System.Windows.Forms.Button();
@@ -70,7 +69,7 @@
             // 
             // btnLerArquivo
             // 
-            this.btnLerArquivo.Location = new System.Drawing.Point(16, 574);
+            this.btnLerArquivo.Location = new System.Drawing.Point(14, 589);
             this.btnLerArquivo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLerArquivo.Name = "btnLerArquivo";
             this.btnLerArquivo.Size = new System.Drawing.Size(139, 40);
@@ -79,20 +78,9 @@
             this.btnLerArquivo.UseVisualStyleBackColor = true;
             this.btnLerArquivo.Click += new System.EventHandler(this.btnLerArquivo_Click);
             // 
-            // btnExibirMatriz
-            // 
-            this.btnExibirMatriz.Location = new System.Drawing.Point(16, 642);
-            this.btnExibirMatriz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnExibirMatriz.Name = "btnExibirMatriz";
-            this.btnExibirMatriz.Size = new System.Drawing.Size(139, 40);
-            this.btnExibirMatriz.TabIndex = 2;
-            this.btnExibirMatriz.Text = "Exibir Matriz";
-            this.btnExibirMatriz.UseVisualStyleBackColor = true;
-            this.btnExibirMatriz.Click += new System.EventHandler(this.btnExibirMatriz_Click);
-            // 
             // btnExibirCelula
             // 
-            this.btnExibirCelula.Location = new System.Drawing.Point(537, 688);
+            this.btnExibirCelula.Location = new System.Drawing.Point(578, 688);
             this.btnExibirCelula.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnExibirCelula.Name = "btnExibirCelula";
             this.btnExibirCelula.Size = new System.Drawing.Size(139, 40);
@@ -103,7 +91,7 @@
             // 
             // btnExcluirMatriz
             // 
-            this.btnExcluirMatriz.Location = new System.Drawing.Point(197, 574);
+            this.btnExcluirMatriz.Location = new System.Drawing.Point(14, 695);
             this.btnExcluirMatriz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnExcluirMatriz.Name = "btnExcluirMatriz";
             this.btnExcluirMatriz.Size = new System.Drawing.Size(139, 40);
@@ -191,7 +179,7 @@
             // btnAdicionarK
             // 
             this.btnAdicionarK.Enabled = false;
-            this.btnAdicionarK.Location = new System.Drawing.Point(713, 680);
+            this.btnAdicionarK.Location = new System.Drawing.Point(809, 688);
             this.btnAdicionarK.Name = "btnAdicionarK";
             this.btnAdicionarK.Size = new System.Drawing.Size(144, 57);
             this.btnAdicionarK.TabIndex = 10;
@@ -239,7 +227,7 @@
             // 
             // txtValorCelula
             // 
-            this.txtValorCelula.Location = new System.Drawing.Point(614, 627);
+            this.txtValorCelula.Location = new System.Drawing.Point(658, 640);
             this.txtValorCelula.Name = "txtValorCelula";
             this.txtValorCelula.Size = new System.Drawing.Size(62, 23);
             this.txtValorCelula.TabIndex = 16;
@@ -251,7 +239,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.Control;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(560, 627);
+            this.label5.Location = new System.Drawing.Point(574, 644);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 21);
@@ -260,7 +248,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(890, 703);
+            this.btnSalvar.Location = new System.Drawing.Point(14, 642);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(139, 40);
@@ -271,7 +259,7 @@
             // 
             // txtK
             // 
-            this.txtK.Location = new System.Drawing.Point(736, 631);
+            this.txtK.Location = new System.Drawing.Point(853, 642);
             this.txtK.Name = "txtK";
             this.txtK.Size = new System.Drawing.Size(100, 23);
             this.txtK.TabIndex = 18;
@@ -279,7 +267,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(710, 631);
+            this.label6.Location = new System.Drawing.Point(793, 646);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 17);
             this.label6.TabIndex = 19;
@@ -308,7 +296,6 @@
             this.Controls.Add(this.btnExcluirCelula);
             this.Controls.Add(this.btnExcluirMatriz);
             this.Controls.Add(this.btnExibirCelula);
-            this.Controls.Add(this.btnExibirMatriz);
             this.Controls.Add(this.btnLerArquivo);
             this.Controls.Add(this.dgv);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -328,7 +315,6 @@
 
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Button btnLerArquivo;
-        private System.Windows.Forms.Button btnExibirMatriz;
         private System.Windows.Forms.Button btnExibirCelula;
         private System.Windows.Forms.Button btnExcluirMatriz;
         private System.Windows.Forms.Button btnExcluirCelula;

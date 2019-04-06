@@ -178,7 +178,7 @@ class Celula
             return Coluna - c.Coluna;
         return diffLinhas;
     }
-                                                        //Duda, verifica esses dois pra mim pq eu n sei se ta certo
+
     public override bool Equals(object obj)
     {
         if (obj == this)
@@ -192,7 +192,7 @@ class Celula
             return false;
         if (!c.Coluna.Equals(Coluna))
             return false;
-        if (!c.Direita.Equals(Direita))             // Scherer, acho que faltava o equals desses dois campos
+        if (!c.Direita.Equals(Direita))
             return false;
         if (!c.Abaixo.Equals(Abaixo))
             return false;
@@ -208,6 +208,4 @@ class Celula
         ret = ret * 5 + abaixo.GetHashCode();
         return ret;
     }
-                                                       //sera que precisa considerar as Celular Diretia e Abaixo???
-                                                       // acho que sim, já que direita e abaixo podem apontar valores diferentes de acordo com a matriz.
 }

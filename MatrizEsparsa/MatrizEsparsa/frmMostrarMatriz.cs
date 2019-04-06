@@ -27,7 +27,6 @@ namespace MatrizEsparsa
             if (dlgArquivo.ShowDialog() == DialogResult.OK)
             {
                 arquivo = dlgArquivo.FileName;
-                btnExibirMatriz.Enabled = true;
                 if (File.Exists(arquivo))
                     matriz = new ListaCruzada(new StreamReader(arquivo));
                 else
@@ -41,29 +40,15 @@ namespace MatrizEsparsa
                 exibindoMatriz = true;
                 matriz.Exibir(ref dgv);
                 exibindoMatriz = false;
+                btnExcluirMatriz.Enabled = true;
+                btnExcluirCelula.Enabled = true;
+                btnExibirCelula.Enabled = true;
+                label1.Enabled = true;
+                label2.Enabled = true;
+                nUDColuna.Enabled = true;
+                nUDLinha.Enabled = true;
+                btnAdicionarK.Enabled = true;
             }
-        }
-
-        private void btnExibirMatriz_Click(object sender, EventArgs e) //permite que o usuário pesquise 
-        {                                                             //informações apenas após a exibição dos dados
-            /*if (matriz != null)
-            {
-                dgv.RowCount = matriz.Linhas;
-                dgv.ColumnCount = matriz.Colunas;
-                exibindoMatriz = true;
-                matriz.Exibir(ref dgv);
-                exibindoMatriz = false;
-            }
-            else
-                matriz = new ListaCruzada(ref dgv);*/
-            btnExcluirMatriz.Enabled = true;
-            btnExcluirCelula.Enabled = true;
-            btnExibirCelula.Enabled = true;
-            label1.Enabled = true;
-            label2.Enabled = true;
-            nUDColuna.Enabled = true;
-            nUDLinha.Enabled = true;
-            btnAdicionarK.Enabled = true;
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -158,7 +143,10 @@ namespace MatrizEsparsa
         private void btnExcluirMatriz_Click(object sender, EventArgs e)
         {
             matriz.RemoverTudo();
-            matriz.Exibir(ref dgv);
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                dgv.Rows[i].DataGridView.Columns.Clear();
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

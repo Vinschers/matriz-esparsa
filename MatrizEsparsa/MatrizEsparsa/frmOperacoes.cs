@@ -33,26 +33,20 @@ namespace MatrizEsparsa
 
         }
 
-        private void btnLer2_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(arquivoB))
-                matrizB = new ListaCruzada(new StreamReader(arquivoB));
-            else
-                File.Create(arquivoB);
-            matrizB.Exibir(ref dgvB);
-            btnMultiplicar.Enabled = true;
-            btnSomar.Enabled = true;
-        }
-
         private void btnLer1_Click(object sender, EventArgs e)
         {
             if (File.Exists(arquivoA))
                 matrizA = new ListaCruzada(new StreamReader(arquivoA));
             else
                 File.Create(arquivoA);
+            if (File.Exists(arquivoB))
+                matrizB = new ListaCruzada(new StreamReader(arquivoB));
+            else
+                File.Create(arquivoB);
             matrizA.Exibir(ref dgvA);
-            btnTranspor.Enabled = true;
-            btnInverter.Enabled = true;
+            matrizB.Exibir(ref dgvB);
+            btnMultiplicar.Enabled = true;
+            btnSomar.Enabled = true;
         }
 
         private void btnMultiplicar_Click(object sender, EventArgs e)
@@ -80,17 +74,5 @@ namespace MatrizEsparsa
             catch (Exception erro) { MessageBox.Show(erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
 
-        private void btnUma_Click(object sender, EventArgs e)
-        {
-            btnLer1.Enabled = true;
-        }
-
-        private void btnDuas_Click(object sender, EventArgs e)
-        {
-            btnLer2.Enabled = true;
-            btnLer1.Enabled = true;
-            dgvResultado.Visible = true;
-            dgvB.Visible = true;
-        }
     }
 }

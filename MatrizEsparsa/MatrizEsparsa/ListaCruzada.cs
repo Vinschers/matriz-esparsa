@@ -143,7 +143,7 @@ class ListaCruzada
                 Adicionar(new Celula((double)cell.Value, cell.RowIndex + 1, cell.ColumnIndex + 1));
     }
 
-    public ListaCruzada(StreamReader sr)
+    public ListaCruzada(StreamReader sr) // Construtor para ler o arquivo texto e criar a matriz a partir dele
     {
         if (sr != null)
         {
@@ -166,7 +166,7 @@ class ListaCruzada
     //Métodos gerais
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    public double this[int i, int j]
+    public double this[int i, int j] // retorna o valor da célula na posição desejada se ela existir, caso não é enviado um valor default de 0
     {
         get
         {
@@ -183,7 +183,7 @@ class ListaCruzada
         }
     }
 
-    protected void IniciarMatriz()
+    protected void IniciarMatriz() // aqui os nós cabeça são criados e a primeira posição da matriz é ligada ao primeiro de cada lista de nós
     {
         primeira = null;
         primeira = new Celula(Celula.posicaoDefault, Celula.posicaoDefault, null, null);
@@ -287,11 +287,11 @@ class ListaCruzada
     {
         dgv.RowCount = linhas;
         dgv.ColumnCount = colunas;
-        foreach (DataGridViewRow r in dgv.Rows)
+        foreach (DataGridViewRow r in dgv.Rows) // limpa o DataGridView
             foreach (DataGridViewCell c in r.Cells)
                 c.Value = 0;
         Celula atual = primeira.Abaixo.Direita;
-        while (atual.Linha != Celula.posicaoDefault)
+        while (atual.Linha != Celula.posicaoDefault) //coloca as informações da matriz no dgv
         {
             while (atual.Coluna != Celula.posicaoDefault)
             {
@@ -324,7 +324,9 @@ class ListaCruzada
     {
         get => primeira.Abaixo.Direita == primeira.Abaixo;
     }
+
     public int Linhas { get => linhas; }
+
     public int Colunas { get => colunas; }
 
     protected bool ExisteCelula(int l, int c, out Celula acima, out Celula anterior)
@@ -335,7 +337,6 @@ class ListaCruzada
                 acima = acima.Abaixo;
         //acima agora esta acima da celula desejada
         for (anterior = primeira; anterior.Linha < l; anterior = anterior.Abaixo) { }
-        anterior = anterior.Direita;
         while (anterior.Direita.Coluna < c && anterior.Direita.Coluna != Celula.posicaoDefault) anterior = anterior.Direita;
         return (anterior.Direita.Coluna == c && acima.Abaixo.Linha == l);
     }
@@ -343,7 +344,7 @@ class ListaCruzada
     protected bool ExisteCelula(int l, int c, out Celula atual)
     {
         for (atual = primeira.Direita; atual.Coluna < c; atual = atual.Direita) { }
-        while (atual.Linha < l) atual = atual.Abaixo;
+        while (atual.Linha < l && atual.Abaixo.Linha != Celula.posicaoDefault) atual = atual.Abaixo;
         return (atual.Linha == l && atual.Coluna == c);
     }
 
@@ -389,56 +390,6 @@ class ListaCruzada
     {
         primeira = null;
     }
-
-    /*public void SomarNaColunaScherer(int c, double k)
-    {
-        if (c < 1 || c > colunas)
-            throw new ArgumentOutOfRangeException("Coluna inválida");
-        Celula atual = primeira.Direita;
-        while (atual.Coluna != c) { atual = atual.Direita; }
-        atual = atual.Abaixo;
-        while (atual.Linha != Celula.posicaoDefault)
-        {
-            //Alterar(atual.Linha, c, atual.Valor + k);
-            Celula ce = null;
-
-            if (atual.Abaixo.Linha != atual.Linha + 1 && atual.Linha < linhas)
-            {
-                //adicionar nova celula com valor k
-                Celula acima = atual;
-                ce = new Celula(k, atual.Linha + 1, atual.Coluna);
-                ce.Abaixo = acima.Abaixo;
-                acima.Abaixo = ce;
-                Celula anterior = primeira.Abaixo;
-                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
-                //anterior = anterior.Direita;
-                if (anterior.Coluna != Celula.posicaoDefault)
-                    while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
-                ce.Direita = anterior.Direita;
-                anterior.Direita = ce;
-                if (ce.Linha == linhas)
-                    return;
-            }
-            atual.Valor += k;
-            atual = atual.Abaixo;
-        }
-        if (atual.Abaixo == atual)
-        {
-            while (atual.Linha != linhas)
-            {
-                Celula ce = new Celula(k, atual.Linha + 1, atual.Coluna);
-                ce.Abaixo = atual.Abaixo;
-                atual.Abaixo = ce;
-                Celula anterior = primeira.Abaixo;
-                while (anterior.Linha != atual.Linha + 1) anterior = anterior.Abaixo;
-                if (anterior.Coluna != Celula.posicaoDefault)
-                    while (anterior.Coluna != atual.Coluna) anterior = anterior.Direita;
-                ce.Direita = anterior.Direita;
-                anterior.Direita = ce;
-                atual = atual.Abaixo;
-            }
-        }
-    }*/
 
     public void SomarNaColuna(int c, double k)
     {
