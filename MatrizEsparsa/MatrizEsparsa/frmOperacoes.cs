@@ -13,8 +13,6 @@ namespace MatrizEsparsa
 {
     public partial class frmOperacoes : Form
     {
-        const string arquivoA = "matrizA.txt";
-        const string arquivoB = "matrizB.txt";
         ListaCruzada matrizA, matrizB, matrizC;
         public frmOperacoes()
         {
@@ -35,14 +33,22 @@ namespace MatrizEsparsa
 
         private void btnLer1_Click(object sender, EventArgs e)
         {
-            if (File.Exists(arquivoA))
-                matrizA = new ListaCruzada(new StreamReader(arquivoA));
-            else
-                File.Create(arquivoA);
-            if (File.Exists(arquivoB))
-                matrizB = new ListaCruzada(new StreamReader(arquivoB));
-            else
-                File.Create(arquivoB);
+            if (dlgArquivo.ShowDialog() == DialogResult.OK)
+            {
+                string arquivo = dlgArquivo.FileName;
+                if (File.Exists(arquivo))
+                    matrizA = new ListaCruzada(new StreamReader(arquivo));
+                else
+                    File.Create(arquivo);
+            }
+            if (dlgArquivo.ShowDialog() == DialogResult.OK)
+            {
+                string arquivo = dlgArquivo.FileName;
+                if (File.Exists(arquivo))
+                    matrizB = new ListaCruzada(new StreamReader(arquivo));
+                else
+                    File.Create(arquivo);
+            }
             matrizA.Exibir(ref dgvA);
             matrizB.Exibir(ref dgvB);
             btnMultiplicar.Enabled = true;
@@ -57,6 +63,11 @@ namespace MatrizEsparsa
                 matrizC.Exibir(ref dgvResultado);
             }
             catch (Exception erro) { MessageBox.Show(erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

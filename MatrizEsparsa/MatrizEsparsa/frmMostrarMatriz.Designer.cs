@@ -178,7 +178,6 @@
             // 
             // btnAdicionarK
             // 
-            this.btnAdicionarK.Enabled = false;
             this.btnAdicionarK.Location = new System.Drawing.Point(809, 688);
             this.btnAdicionarK.Name = "btnAdicionarK";
             this.btnAdicionarK.Size = new System.Drawing.Size(144, 57);

@@ -151,7 +151,14 @@ namespace MatrizEsparsa
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            matriz.Salvar(new StreamWriter(arquivo));
+            if (dlgArquivo.ShowDialog() == DialogResult.OK)
+            {
+                arquivo = dlgArquivo.FileName;
+                if (!File.Exists(arquivo))
+                    File.Create(arquivo);
+                matriz.Salvar(new StreamWriter(arquivo));
+            }
+
         }
 
 
