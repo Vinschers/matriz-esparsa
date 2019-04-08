@@ -181,6 +181,17 @@ class ListaCruzada
             else
                 return 0;
         }
+        set
+        {
+            if (i <= linhas && j <= colunas)
+            {
+                Celula atual;
+                if (ExisteCelula(i, j, out atual))
+                    Alterar(i, j, atual.Valor + value);
+                else
+                    Adicionar(new Celula(value, i, j));
+            }
+        }
     }
 
     protected void IniciarMatriz() // aqui os nós cabeça são criados e a primeira posição da matriz é ligada ao primeiro de cada lista de nós
@@ -573,7 +584,10 @@ class ListaCruzada
     //public ListaCruzada Inverter()
     //{
     //    ListaCruzada matrizInversa = new ListaCruzada();
-    //    return matrizInversa;
+    //    return matrizInversa
+    
+    
+    
     //}
 
     //public ListaCruzada Transpor()

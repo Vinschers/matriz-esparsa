@@ -48,6 +48,7 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.txtK = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnCriar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLinha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDColuna)).BeginInit();
@@ -69,7 +70,7 @@
             // 
             // btnLerArquivo
             // 
-            this.btnLerArquivo.Location = new System.Drawing.Point(14, 589);
+            this.btnLerArquivo.Location = new System.Drawing.Point(14, 558);
             this.btnLerArquivo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnLerArquivo.Name = "btnLerArquivo";
             this.btnLerArquivo.Size = new System.Drawing.Size(139, 40);
@@ -91,7 +92,7 @@
             // 
             // btnExcluirMatriz
             // 
-            this.btnExcluirMatriz.Location = new System.Drawing.Point(14, 695);
+            this.btnExcluirMatriz.Location = new System.Drawing.Point(14, 711);
             this.btnExcluirMatriz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnExcluirMatriz.Name = "btnExcluirMatriz";
             this.btnExcluirMatriz.Size = new System.Drawing.Size(139, 40);
@@ -247,7 +248,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(14, 642);
+            this.btnSalvar.Location = new System.Drawing.Point(14, 663);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(139, 40);
@@ -272,12 +273,23 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "K:";
             // 
+            // btnCriar
+            // 
+            this.btnCriar.Location = new System.Drawing.Point(14, 606);
+            this.btnCriar.Name = "btnCriar";
+            this.btnCriar.Size = new System.Drawing.Size(139, 41);
+            this.btnCriar.TabIndex = 20;
+            this.btnCriar.Text = "Criar";
+            this.btnCriar.UseVisualStyleBackColor = true;
+            this.btnCriar.Click += new System.EventHandler(this.btnCriar_Click);
+            // 
             // frmMostrarMatriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1043, 756);
+            this.Controls.Add(this.btnCriar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtK);
             this.Controls.Add(this.btnSalvar);
@@ -332,5 +344,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.TextBox txtK;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnCriar;
     }
 }

@@ -49,7 +49,7 @@
             this.dgvA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvA.Location = new System.Drawing.Point(39, 62);
             this.dgvA.Name = "dgvA";
-            this.dgvA.Size = new System.Drawing.Size(735, 454);
+            this.dgvA.Size = new System.Drawing.Size(578, 313);
             this.dgvA.TabIndex = 0;
             // 
             // dgvResultado
@@ -58,9 +58,9 @@
             this.dgvResultado.AllowUserToDeleteRows = false;
             this.dgvResultado.AllowUserToOrderColumns = true;
             this.dgvResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResultado.Location = new System.Drawing.Point(39, 553);
+            this.dgvResultado.Location = new System.Drawing.Point(39, 412);
             this.dgvResultado.Name = "dgvResultado";
-            this.dgvResultado.Size = new System.Drawing.Size(735, 454);
+            this.dgvResultado.Size = new System.Drawing.Size(578, 350);
             this.dgvResultado.TabIndex = 1;
             this.dgvResultado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -70,15 +70,15 @@
             this.dgvB.AllowUserToDeleteRows = false;
             this.dgvB.AllowUserToOrderColumns = true;
             this.dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvB.Location = new System.Drawing.Point(822, 62);
+            this.dgvB.Location = new System.Drawing.Point(702, 62);
             this.dgvB.Name = "dgvB";
-            this.dgvB.Size = new System.Drawing.Size(735, 454);
+            this.dgvB.Size = new System.Drawing.Size(578, 313);
             this.dgvB.TabIndex = 2;
             this.dgvB.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // btnLer
             // 
-            this.btnLer.Location = new System.Drawing.Point(950, 595);
+            this.btnLer.Location = new System.Drawing.Point(722, 425);
             this.btnLer.Name = "btnLer";
             this.btnLer.Size = new System.Drawing.Size(121, 45);
             this.btnLer.TabIndex = 3;
@@ -89,7 +89,7 @@
             // btnSomar
             // 
             this.btnSomar.Enabled = false;
-            this.btnSomar.Location = new System.Drawing.Point(950, 772);
+            this.btnSomar.Location = new System.Drawing.Point(702, 556);
             this.btnSomar.Name = "btnSomar";
             this.btnSomar.Size = new System.Drawing.Size(121, 45);
             this.btnSomar.TabIndex = 4;
@@ -100,7 +100,7 @@
             // btnMultiplicar
             // 
             this.btnMultiplicar.Enabled = false;
-            this.btnMultiplicar.Location = new System.Drawing.Point(1159, 772);
+            this.btnMultiplicar.Location = new System.Drawing.Point(999, 539);
             this.btnMultiplicar.Name = "btnMultiplicar";
             this.btnMultiplicar.Size = new System.Drawing.Size(121, 45);
             this.btnMultiplicar.TabIndex = 5;
@@ -116,7 +116,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 519);
+            this.label1.Location = new System.Drawing.Point(42, 378);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 31);
             this.label1.TabIndex = 9;
@@ -127,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1678, 1061);
+            this.ClientSize = new System.Drawing.Size(1604, 882);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMultiplicar);
             this.Controls.Add(this.btnSomar);
