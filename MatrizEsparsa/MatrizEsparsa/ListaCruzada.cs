@@ -308,7 +308,7 @@ class ListaCruzada
             {
                 DataGridViewRow row = dgv.Rows[atual.Linha - 1];
                 DataGridViewCell cell = row.Cells[atual.Coluna - 1];
-                cell.Value = atual.Valor;
+                cell.Value = atual.Valor;   
                 atual = atual.Direita;
             }
             atual = atual.Abaixo.Direita;
