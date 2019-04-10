@@ -45,3 +45,4 @@ C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\
 C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.exe
 C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.pdb
 C:\Users\u18190\Documents\GitHub\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csprojResolveAssemblyReference.cache
+C:\Users\u18178\Desktop\matriz-esparsa\MatrizEsparsa\MatrizEsparsa\obj\Debug\MatrizEsparsa.csprojResolveAssemblyReference.cache

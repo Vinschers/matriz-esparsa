@@ -536,22 +536,7 @@ class ListaCruzada
         if (colunas != l2.linhas)
             throw new Exception("Tamanho da matriz B inválido");
         ListaCruzada matrizMultiplicacao = new ListaCruzada(linhas, l2.colunas);
-        double somaAtual = 0;
-        for (int j = 1; j <= matrizMultiplicacao.Linhas; j++)
-        {
-            for(int k = 1; k <= matrizMultiplicacao.Colunas; k++)
-            {
-                for (int c = 1; c <= matrizMultiplicacao.Colunas; c++)
-                    somaAtual += l2[j, c] * this[j, c];
-                if (somaAtual != 0)
-                {
-                    Celula atual = new Celula(somaAtual, j, k);
-                    matrizMultiplicacao.Adicionar(atual);
-                }
-                somaAtual = 0;
-            }
-        }
-       /* for (Celula atual = primeira.Abaixo;
+        for (Celula atual = primeira.Abaixo;
             atual.Linha != Celula.posicaoDefault;
             atual = atual.Abaixo)
         {
@@ -583,7 +568,7 @@ class ListaCruzada
                 if (atualL2.Linha != Celula.posicaoDefault)
                     while (atualL2.Linha != Celula.posicaoDefault) atualL2 = atualL2.Abaixo;
             }
-        }*/
+        }
         return matrizMultiplicacao;
     }
 
