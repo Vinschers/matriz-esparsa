@@ -58,25 +58,7 @@ namespace MatrizEsparsa
 
         private void txtLargura_TextChanged(object sender, EventArgs e)
         {
-            if (txtAltura.Text != "" && txtLargura.Text != "" && !alterandoTextDimensao)
-            {
-                int l = int.Parse(txtAltura.Text);
-                int c = int.Parse(txtLargura.Text);
-                nUDColuna.Maximum = c;
-                nUDLinha.Maximum = l;
-                if (l > 1 && c > 1)
-                {
-                    matriz.MudarDimensao(l, c);
-                    dgv.RowCount = l;
-                    dgv.ColumnCount = c;
-                    exibindoMatriz = true;
-                    foreach (DataGridViewRow r in dgv.Rows)
-                        foreach (DataGridViewCell co in r.Cells)
-                            co.Value = 0;
-                    matriz.Exibir(ref dgv);
-                    exibindoMatriz = false;
-                }
-            }
+            
         }
 
         private void txtLargura_KeyPress(object sender, KeyPressEventArgs e)
@@ -170,6 +152,32 @@ namespace MatrizEsparsa
             exibindoMatriz = true;
             matriz.Exibir(ref dgv);
             exibindoMatriz = false;
+        }
+
+        private void btnCriar_Click(object sender, EventArgs e)
+        {
+
+            if (txtAltura.Text != "" && txtLargura.Text != "" && !alterandoTextDimensao)
+            {
+                int l = int.Parse(txtAltura.Text);
+                int c = int.Parse(txtLargura.Text);
+                nUDColuna.Maximum = c;
+                nUDLinha.Maximum = l;
+                if (l >= 1 && c >= 1)
+                {
+                    matriz.RemoverTudo();
+                    matriz = new ListaCruzada();
+                    matriz.MudarDimensao(l, c);
+                    dgv.RowCount = l;
+                    dgv.ColumnCount = c;
+                    exibindoMatriz = true;
+                    foreach (DataGridViewRow r in dgv.Rows)
+                        foreach (DataGridViewCell co in r.Cells)
+                            co.Value = 0;
+                    matriz.Exibir(ref dgv);
+                    exibindoMatriz = false;
+                }
+            }
         }
 
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)

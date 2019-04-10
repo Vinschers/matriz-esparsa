@@ -181,6 +181,17 @@ class ListaCruzada
             else
                 return 0;
         }
+        set
+        {
+            if (i <= linhas && j <= colunas)
+            {
+                Celula atual;
+                if (ExisteCelula(i, j, out atual))
+                    Alterar(i, j, atual.Valor + value);
+                else
+                    Adicionar(new Celula(value, i, j));
+            }
+        }
     }
 
     protected void IniciarMatriz() // aqui os nós cabeça são criados e a primeira posição da matriz é ligada ao primeiro de cada lista de nós
@@ -297,7 +308,7 @@ class ListaCruzada
             {
                 DataGridViewRow row = dgv.Rows[atual.Linha - 1];
                 DataGridViewCell cell = row.Cells[atual.Coluna - 1];
-                cell.Value = atual.Valor;
+                cell.Value = atual.Valor;   
                 atual = atual.Direita;
             }
             atual = atual.Abaixo.Direita;
@@ -504,25 +515,16 @@ class ListaCruzada
 
         ListaCruzada matrizSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
-        for (Celula atual = primeira.Abaixo.Direita, atualL2 = l2.primeira.Abaixo.Direita;
-            atual.Linha != Celula.posicaoDefault && atualL2.Linha != Celula.posicaoDefault;
-            atual = atual.Abaixo.Direita, atualL2 = atualL2.Abaixo.Direita)
+        for (int j = 1; j <= matrizSoma.Linhas; j++)
         {
-            while (atual.Coluna != Celula.posicaoDefault && atualL2.Coluna != Celula.posicaoDefault)
+            for (int k = 1; k <= matrizSoma.Colunas; k++)
             {
-                double sum = atual.Valor + atualL2.Valor;
-                if (sum != 0)
-                {
-                    if (atual.Coluna == atualL2.Coluna && atual.Linha == atualL2.Linha)
-                        matrizSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
-                    else
+                    double sum = this[j, k] + l2[j,k];
+                    if (sum != 0)
                     {
-                        matrizSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
-                        matrizSoma.Adicionar(new Celula(atualL2.Valor, atualL2.Linha, atualL2.Coluna));
+                        Celula atual = new Celula(sum, j, k);
+                        matrizSoma.Adicionar(atual);
                     }
-                }
-                atual = atual.Direita;
-                atualL2 = atualL2.Direita;
             }
         }
         return matrizSoma;
@@ -573,7 +575,10 @@ class ListaCruzada
     //public ListaCruzada Inverter()
     //{
     //    ListaCruzada matrizInversa = new ListaCruzada();
-    //    return matrizInversa;
+    //    return matrizInversa
+    
+    
+    
     //}
 
     //public ListaCruzada Transpor()
