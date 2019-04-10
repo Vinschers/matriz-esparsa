@@ -47,8 +47,10 @@
             this.dgvA.AllowUserToDeleteRows = false;
             this.dgvA.AllowUserToOrderColumns = true;
             this.dgvA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvA.ColumnHeadersVisible = false;
             this.dgvA.Location = new System.Drawing.Point(39, 62);
             this.dgvA.Name = "dgvA";
+            this.dgvA.RowHeadersVisible = false;
             this.dgvA.Size = new System.Drawing.Size(578, 313);
             this.dgvA.TabIndex = 0;
             // 
@@ -58,8 +60,10 @@
             this.dgvResultado.AllowUserToDeleteRows = false;
             this.dgvResultado.AllowUserToOrderColumns = true;
             this.dgvResultado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultado.ColumnHeadersVisible = false;
             this.dgvResultado.Location = new System.Drawing.Point(39, 412);
             this.dgvResultado.Name = "dgvResultado";
+            this.dgvResultado.RowHeadersVisible = false;
             this.dgvResultado.Size = new System.Drawing.Size(578, 350);
             this.dgvResultado.TabIndex = 1;
             this.dgvResultado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
@@ -70,8 +74,10 @@
             this.dgvB.AllowUserToDeleteRows = false;
             this.dgvB.AllowUserToOrderColumns = true;
             this.dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvB.ColumnHeadersVisible = false;
             this.dgvB.Location = new System.Drawing.Point(702, 62);
             this.dgvB.Name = "dgvB";
+            this.dgvB.RowHeadersVisible = false;
             this.dgvB.Size = new System.Drawing.Size(578, 313);
             this.dgvB.TabIndex = 2;
             this.dgvB.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
