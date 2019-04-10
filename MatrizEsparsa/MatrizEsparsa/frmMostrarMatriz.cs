@@ -156,6 +156,7 @@ namespace MatrizEsparsa
 
         private void btnCriar_Click(object sender, EventArgs e)
         {
+
             if (txtAltura.Text != "" && txtLargura.Text != "" && !alterandoTextDimensao)
             {
                 int l = int.Parse(txtAltura.Text);
@@ -164,6 +165,8 @@ namespace MatrizEsparsa
                 nUDLinha.Maximum = l;
                 if (l >= 1 && c >= 1)
                 {
+                    matriz.RemoverTudo();
+                    matriz = new ListaCruzada();
                     matriz.MudarDimensao(l, c);
                     dgv.RowCount = l;
                     dgv.ColumnCount = c;

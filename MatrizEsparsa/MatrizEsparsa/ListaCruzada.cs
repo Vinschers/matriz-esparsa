@@ -515,25 +515,16 @@ class ListaCruzada
 
         ListaCruzada matrizSoma = new ListaCruzada(linhas, colunas); // declara e instancia a lista que será retornada
 
-        for (Celula atual = primeira.Abaixo.Direita, atualL2 = l2.primeira.Abaixo.Direita;
-            atual.Linha != Celula.posicaoDefault && atualL2.Linha != Celula.posicaoDefault;
-            atual = atual.Abaixo.Direita, atualL2 = atualL2.Abaixo.Direita)
+        for (int j = 1; j <= matrizSoma.Linhas; j++)
         {
-            while (atual.Coluna != Celula.posicaoDefault && atualL2.Coluna != Celula.posicaoDefault)
+            for (int k = 1; k <= matrizSoma.Colunas; k++)
             {
-                double sum = atual.Valor + atualL2.Valor;
-                if (sum != 0)
-                {
-                    if (atual.Coluna == atualL2.Coluna && atual.Linha == atualL2.Linha)
-                        matrizSoma.Adicionar(new Celula(sum, atual.Linha, atual.Coluna));
-                    else
+                    double sum = this[j, k] + l2[j,k];
+                    if (sum != 0)
                     {
-                        matrizSoma.Adicionar(new Celula(atual.Valor, atual.Linha, atual.Coluna));
-                        matrizSoma.Adicionar(new Celula(atualL2.Valor, atualL2.Linha, atualL2.Coluna));
+                        Celula atual = new Celula(sum, j, k);
+                        matrizSoma.Adicionar(atual);
                     }
-                }
-                atual = atual.Direita;
-                atualL2 = atualL2.Direita;
             }
         }
         return matrizSoma;
@@ -545,7 +536,22 @@ class ListaCruzada
         if (colunas != l2.linhas)
             throw new Exception("Tamanho da matriz B inválido");
         ListaCruzada matrizMultiplicacao = new ListaCruzada(linhas, l2.colunas);
-        for (Celula atual = primeira.Abaixo;
+        double somaAtual = 0;
+        for (int j = 1; j <= matrizMultiplicacao.Linhas; j++)
+        {
+            for(int k = 1; k <= matrizMultiplicacao.Colunas; k++)
+            {
+                for (int c = 1; c <= matrizMultiplicacao.Colunas; c++)
+                    somaAtual += l2[j, c] * this[j, c];
+                if (somaAtual != 0)
+                {
+                    Celula atual = new Celula(somaAtual, j, k);
+                    matrizMultiplicacao.Adicionar(atual);
+                }
+                somaAtual = 0;
+            }
+        }
+       /* for (Celula atual = primeira.Abaixo;
             atual.Linha != Celula.posicaoDefault;
             atual = atual.Abaixo)
         {
@@ -577,7 +583,7 @@ class ListaCruzada
                 if (atualL2.Linha != Celula.posicaoDefault)
                     while (atualL2.Linha != Celula.posicaoDefault) atualL2 = atualL2.Abaixo;
             }
-        }
+        }*/
         return matrizMultiplicacao;
     }
 

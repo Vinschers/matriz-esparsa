@@ -45,6 +45,7 @@ class Celula
         {
             if (value != 0)
                 valor = value;
+
         }
     }
     /// <summary>
