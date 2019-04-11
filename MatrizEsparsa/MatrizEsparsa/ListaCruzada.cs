@@ -333,7 +333,32 @@ class ListaCruzada
 
     public bool EstaVazia
     {
-        get => primeira.Abaixo.Direita == primeira.Abaixo;
+        get
+        {
+            Celula atual;
+            if (linhas < colunas)
+            {
+                atual = primeira.Abaixo;
+                while (atual.Linha != Celula.posicaoDefault)
+                {
+                    if (atual.Direita != atual)
+                        return false;
+                    atual = atual.Abaixo;
+                }
+                return true;
+            }
+            else
+            {
+                atual = primeira.Direita;
+                while(atual.Coluna != Celula.posicaoDefault)
+                {
+                    if (atual.Abaixo != atual)
+                        return false;
+                    atual = atual.Direita;
+                }
+                return true;
+            }
+        }
     }
 
     public int Linhas { get => linhas; }
